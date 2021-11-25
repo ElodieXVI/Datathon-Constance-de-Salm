@@ -6,6 +6,8 @@ Au cours du datathon organisé par l’IHA et le DFK Paris portant sur l’utili
 
 Les fonds proposés par le DHI documentent quelque 11 000 lettres issues de la correspondance entretenue par l’écrivaine française Constance de Salm avec de nombreux amis, parmi lesquels des écrivains, des savants et des artistes contemporains de renom. Toutes les lettres sont indexées et accessibles avec des métadonnées et peuvent être consultées en ligne sous forme de copies numériques.
 
+https://github.com/dhi-digital-humanities/constance-de-salm
+
 #Les sentiments dans la correspance de Constance de Salm
 
 À partir des lettres, nous souhaitons mener une analyse des sentiments 
