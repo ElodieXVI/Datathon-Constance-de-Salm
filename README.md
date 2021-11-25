@@ -11,4 +11,4 @@ https://github.com/dhi-digital-humanities/constance-de-salm
 
 #Les sentiments dans la correspondance de Constance de Salm
 
-Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec le logiciel  Kraken. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm de 1807 à 1842.
+Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec  Kraken et avec comme interface eScriptorium. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm de 1807 à 1842.
