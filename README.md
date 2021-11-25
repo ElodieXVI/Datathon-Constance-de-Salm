@@ -8,9 +8,6 @@ Les fonds proposés par le DHI documentent quelque 11 000 lettres issues de la c
 
 https://github.com/dhi-digital-humanities/constance-de-salm
 
-
-## Les sentiments dans la correspondance de Constance de Salm
-
 Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec  Kraken et avec comme interface eScriptorium. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm de 1807 à 1842.
 
 ## The correspondence of Constance of Salm (1767-1845)
@@ -20,7 +17,5 @@ During the datathon organised by IHA and DFK Paris on the creative use of resear
 The DHI's holdings document some 11,000 letters from the correspondence between the French writer Constance de Salm and numerous friends, including renowned contemporary writers, scholars and artists. All letters are indexed and accessible with metadata and can be consulted online as digital copies.
 
 https://github.com/dhi-digital-humanities/constance-de-salm
-
-## Sentiments in the correspondence of Constance of Salm
 
 Constance de Salm used different hands to write her letters, making it difficult to recognise the text with Kraken and with the eScriptorium interface. To make the project feasible, we therefore chose to focus on letters written by one hand, the one that would have written the most letters for Constance of Salm from 1807 to 1842.
