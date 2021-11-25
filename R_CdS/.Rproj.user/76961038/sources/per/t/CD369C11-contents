@@ -9,6 +9,7 @@ output: pdf_document
 library(readr)
 library(tidyverse)
 library(questionr)
+
 CdS <- read_delim("CdS_main_genre.csv", 
                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
 CdS <- CdS[, c(37,36,5:6, 38:39,9,12,14,21,22,24,27,29)]

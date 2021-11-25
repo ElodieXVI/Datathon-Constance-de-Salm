@@ -1,8 +1,6 @@
 ---
-title: "Correspondance de Constance de Salm"
-author: "Élodie Lemaire"
-date: "25/11/2021"
-output: pdf_document
+title: "Untitled"
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +32,7 @@ ggplot(CdS) +
 ## L'utilisation des mains d'écriture dans le temps :
 
 
-```{r, eval = TRUE, echo=FALSE}
+```{r, eval = TRUE, echo=FALSE, warning=FALSE}
 ggplot(CdS) +
   aes(x = Datierung..JJJJ.MM.TT., fill = main_num) +
   geom_histogram(bins = 30L) +
@@ -59,5 +57,4 @@ ggplot(CdS) +
   labs(fill = "Genre des auteurs :")
   theme_linedraw()
 ```
-
 
