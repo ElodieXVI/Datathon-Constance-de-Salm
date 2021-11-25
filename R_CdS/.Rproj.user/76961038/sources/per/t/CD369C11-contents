@@ -1,0 +1,62 @@
+---
+title: "Correspondance de Constance de Salm"
+author: "Élodie Lemaire"
+date: "25/11/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(tidyverse)
+library(questionr)
+CdS <- read_delim("CdS_main_genre.csv", 
+                             delim = ";", escape_double = FALSE, trim_ws = TRUE)
+CdS <- CdS[, c(37,36,5:6, 38:39,9,12,14,21,22,24,27,29)]
+
+```
+
+##Genre et main d'écriture :
+
+```{r, eval=TRUE, echo=FALSE}
+ggplot(CdS) +
+  aes(x = main_num, fill = Verfasser_1genre) +
+  geom_bar() +
+  scale_color_hue(direction = 1) +
+  ylab("Effectifs") +
+  ggtitle("Le genre des auteurs des lettres en fonction de la main d'écriture :") +
+  labs(fill = "Genre des auteurs :") +
+  theme_linedraw()
+  
+
+```
+
+## L'utilisation des mains d'écriture dans le temps :
+
+
+```{r, eval = TRUE, echo=FALSE}
+ggplot(CdS) +
+  aes(x = Datierung..JJJJ.MM.TT., fill = main_num) +
+  geom_histogram(bins = 30L) +
+  scale_fill_hue(direction = 1) +
+  ylab("Effectifs") +
+  xlab("Date d'écriture des lettres") +
+  ggtitle("L'écriture des lettres dans le temps en fonction des mains") +
+  labs(fill = "Main d'écriture :")
+  theme_linedraw()
+```
+
+## Le genre des auteurs des lettres dans le temps :
+
+```{r, eval = TRUE, echo=FALSE}
+ggplot(CdS) +
+  aes(x = Datierung..JJJJ.MM.TT., fill = Verfasser_1genre) +
+  geom_histogram(bins = 30L) +
+  scale_fill_hue(direction = 1) +
+  ylab("Effectifs") +
+  xlab("Date d'écriture des lettres") +
+  ggtitle("L'écriture des lettres dans le temps en fonction du genre des auteurs") +
+  labs(fill = "Genre des auteurs :")
+  theme_linedraw()
+```
+
+

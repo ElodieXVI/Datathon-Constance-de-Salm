@@ -1,0 +1,20 @@
+"0","library(readr)"
+"0","library(tidyverse)"
+"0","library(questionr)"
+"0","CdS <- read_delim(""CdS_main_genre.csv"", "
+"0","                             delim = "";"", escape_double = FALSE, trim_ws = TRUE)"
+"2","[1mRows: [22m[34m1466[39m [1mColumns: [22m[34m39[39m
+"
+"2","[36m──[39m [1mColumn specification[22m [36m──────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "";""
+[31mchr[39m  (33): FuD.Key, letzte.Änderung, Dokumenttyp, URL, Nr., Verfasser, GND..Verfasser., VIAF..Verf...
+[32mdbl[39m   (2): Umfang.in.Seiten, id
+[33mlgl[39m   (3): Empfangsort, Geonames..Empfangsort., Editionen
+[34mdate[39m  (1): Datierung..JJJJ.MM.TT.
+"
+"2","
+[36mℹ[39m Use [38;5;251m[48;5;235m[38;5;251m[48;5;235m`spec()`[48;5;235m[38;5;251m[49m[39m to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set [38;5;251m[48;5;235m[38;5;251m[48;5;235m`show_col_types = FALSE`[48;5;235m[38;5;251m[49m[39m to quiet this message.
+"
+"0","CdS <- CdS[, c(37,36,5:6, 38:39,9,12,14,21,22,24,27,29)]"
+"0",""
