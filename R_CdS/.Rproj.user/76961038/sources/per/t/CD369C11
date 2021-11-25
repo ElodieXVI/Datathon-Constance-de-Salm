@@ -1,6 +1,6 @@
 {
     "id": "CD369C11",
-    "path": "~/Desktop/Datathon/R_genre/Script3.Rmd",
+    "path": "~/Desktop/Datathon/R_CdS/Script3.Rmd",
     "project_path": "Script3.Rmd",
     "type": "r_markdown",
     "hash": "1744915950",
@@ -13,9 +13,9 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "61,0",
-        "scrollLine": "54",
-        "last_setup_crc32": "1EA5B4A66707ded1"
+        "cursorPosition": "1,0",
+        "scrollLine": "0",
+        "last_setup_crc32": ""
     },
     "folds": "7|27|15|0|\n",
     "lastKnownWriteTime": 1637867035,
