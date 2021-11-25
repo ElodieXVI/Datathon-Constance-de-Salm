@@ -8,7 +8,7 @@ Les fonds proposés par le DHI documentent quelque 11 000 lettres issues de la c
 
 https://github.com/dhi-digital-humanities/constance-de-salm
 
-Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec  Kraken et avec comme interface eScriptorium. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm de 1807 à 1842.
+Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec un modèle unique sur Kraken. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm de 1807 à 1842.
 
 ## The correspondence of Constance of Salm (1767-1845)
 
