@@ -21,13 +21,14 @@ stops = stopwords.words("french")
 # Part-Of-Speech
 pos_list = ["NOUN", "ADJ", "ADV"]
 
-# Ajouter les documents / les plain textes
+# Ajouter et analyser les documents / ajouter les résultats au DataFrame
 results_complet = {}
 for file in glob.glob('./test/documents/*'):
     print('Working on:', os.path.basename(file))
 
     doc_prep = nlp(open(file, 'r').read())
-
+    # Il faut ajouter seulement des lemmas qui sont assez longs, qui n'apparaissent pas dans la liste de stopwords
+    # et dont le Part of Speech tag doit être un nom, un verbe ou un adjective
     tokens = [word.lemma_ for word in doc_prep if word.text not in stops and not re.match('\W+|\d+|\w+’+', word.text)
               and word.pos_ in pos_list and len(word.text) > 1]
 
@@ -35,6 +36,7 @@ for file in glob.glob('./test/documents/*'):
     for token in tokens:
         preprocessed += ' ' + token
 
+    # Mettre les résultats dans une dictionnaire, correspondants au fichier
     result_sentiment = 'en train de le trouver'
     if tb(preprocessed).sentiment[0] > 0.0:
         result_sentiment = 'positif'
