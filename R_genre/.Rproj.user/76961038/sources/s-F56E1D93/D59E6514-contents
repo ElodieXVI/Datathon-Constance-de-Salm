@@ -1,0 +1,237 @@
+#### Sraping_Script_Seance 3:
+
+# 2 nouvelles comp?tences:
+# Utiliser Rselenium pour manipuler un navigateur ? distance
+# apprendre ? construire une boucle
+
+#2 objectifs pratiques: 
+#construire une base d'url compl?te
+#faire tourner le scraping sur toute la base d'Url
+
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(stringr)
+library(tibble)
+
+#### 1. Utiliser RSelenium ####
+
+#ouvrir un browser sur l'ordinateur
+#Rq: il faut changer le num?ro du port a chaque utilisation.
+rD <- rsDriver(browser="firefox", port=4587L, verbose=F)
+remDr <- rD[["client"]] #The second line in the snippet above assigns the browser client to an object, remDr.
+
+#aller sur la page d'int?r?t n?1
+remDr$navigate("https://www.palaisdetokyo.com/fr/liste/jaimerais-en-savoir-plus-sur-les-expositions-du-palais-de-tokyo-en")
+#cliquer sur des ?l?ments:
+#on utilise ? nouveau le selector gadget pour identifier l'endroit o? l'on veut cliquer.
+#on peut aussi utiliser le xpath
+
+#cliquer sur un bouton "ann?e pr?c?dente"
+remDr$findElements("css", '.prev')[[1]]$clickElement()
+remDr$findElements("xpath", '//*[contains(concat( " ", @class, " " ), concat( " ", "prev", " " ))]')[[1]]$clickElement()
+
+#aller sur la page d'int?r?t n?2
+remDr$navigate("https://www.palaisdetokyo.com/fr/evenement/jusquici-tout-va-bien-0")
+
+#cliquer sur le menu d?roulant
+remDr$findElements("css", '.body-show')[[1]]$clickElement()
+
+#### 2. Construire une boucle ####
+
+#la structure clasique d'une boucle:
+for (i in 1:n) {
+  do_something_with(i)}
+
+#on peut aussi ajouter des conditions:
+if (this happens) {do_this}
+
+#et faire d'autres choses qui ne correspondent pas ? cette condition:
+else {}
+
+#ou casser la boucle
+else {break}
+
+#on va aussi utiliser la fonction try pour que la boucle continue m?me si R affiche des erreurs:
+
+#quand il y a un menu d?roulant
+a <- try(remDr$findElements("css", '.body-show')[[1]]$clickElement(), silent = TRUE) 
+a #la fonction renvoie NULL
+#quand il n'y a pas de menu d?roulant
+b <- try(remDr$findElements("css", '.body-show')[[1]]$clickElement(), silent = TRUE) 
+b #la fonction renvoie une erreur
+
+if (is.null(try(remDr$findElements("css", '.body-show')[[1]]$clickElement(),silent = TRUE))){
+  remDr$findElements("css", '.body-show')[[1]]$clickElement()
+}
+
+#on pourra donc ins?rer une condition dans notre boucle:
+#ne cliquer pour ?tendre le menu d?roulant
+#que si la fonction renvoie NULL (= que si le menu d?roulant existe)
+
+
+
+#### 3. Application 1: constituer la liste d'url ####
+
+#on va aspirer l'ensemble des adresses url pr?sentes sur toutes les pages
+#ce qui implique de cliquer sur les boutons ann?e pr?c?dente
+#on est donc oblig? d'abandonner le script en Rvest
+#pour ?crire une script ?quivalent en RSelenium
+
+
+#on cr?e la base
+URL1 <- data.frame()
+
+#aller sur la page d'int?r?t n?1
+remDr$navigate("https://www.palaisdetokyo.com/fr/liste/jaimerais-en-savoir-plus-sur-les-expositions-du-palais-de-tokyo-en")
+remDr$findElements("css", '.next')[[1]]$clickElement()
+
+all_links_page <- remDr$findElements("css selector", "a")
+
+for (j in 1:length(all_links_page)) {
+  url_link <- as.character(all_links_page[[j]]$getElementAttribute("href"))
+  temp_data_frame <- data.frame(url = url_link)
+  
+  URL1 <- rbind(URL1, temp_data_frame)
+}
+
+URL1 %>% View
+
+k <- 0
+repeat {
+  #cliquer sur un bouton "ann?e pr?c?dente"
+  remDr$findElements("css", '.prev')[[1]]$clickElement()
+  Sys.sleep(5)
+  
+  #aspirer tous les liens
+  all_links_page <- remDr$findElements("css selector", "a")
+  
+  #ne garder que le texte des adresses url
+  for (j in 1:length(all_links_page)) {
+    url_link <- as.character(all_links_page[[j]]$getElementAttribute("href"))
+    temp_data_frame <- data.frame(url = url_link)
+  
+  #et les ajouter dans la base  
+  URL1 <- rbind(URL1, temp_data_frame)}
+  
+  k <- k + 1
+  # Breaking condition: apr?s avoir cliqu? 6 fois
+  if(k == 7) {
+    break}
+}
+
+ View(URL1)
+#donc on nettoie cette liste, comme dans le script 2,
+#pour ne concerver que les adresses url qui nous int?ressent
+URL2 <- data.frame(URL1[grep(pattern = "/evenement/", URL1$url),])
+#on n'a plus que 168 ?l?ments
+
+colnames(URL2) <- "url"
+#attention: on enl?ve les doublons
+doublons <- which(duplicated(URL2$url))
+
+URL3 <- URL2 [-doublons,] %>% data.frame
+colnames(URL3)<- "url"
+View(URL3) #on a finalement 126 adresses
+
+#on a une liste d'adresses url ? scrapper, que l'on peur enregistrer et qui servira pour faire tourner la boucle
+setwd("C:/Users/Brianne/Documents/Documents/Doctorat Sciences Po/Cours donn?s/ENS 2021 22/Master QESS/Scraping M2")
+write.csv (URL3 , "liste_url_compl?te_8nov.csv") 
+
+
+
+#### 4. Application 2: Aspirer le contenu de toutes les pages list?es ####
+
+#on souhaite d?sormais appliquer le script 1 ? la liste que l'on vient de constituer
+
+#4.1. Charger et arranger la base de donn?es ####
+base_url_complete <- read.csv("liste_url_compl?te_8nov.csv") 
+
+base_url <- base_url_complete [c(1:10),] #pour le cours, pour aller plus vite, je ne prends que 10 pages
+
+base_url$titre <- NA
+base_url$texte <- NA
+base_url$artistes <- NA
+base_url$commissaires <- NA
+base_url$dates <- NA
+
+View(base_url)
+
+#4.2. construire une boucle pour faire tourner ce code sur toutes les url de la base
+
+# on construit une seconde boucle qui ouvre les menus d?roulants lorsqu'il y en a 
+#et ne s'arr?te pas ? cause du message d'erreur lorsqu'il n'y en a pas.
+
+for (i in 1: nrow(base_url)){
+  
+  #aller sur la i?me page web de la liste url
+  remDr$navigate(base_url$url[i])
+  Sys.sleep(5) #et attendre un peu pour laisser le temps de charger
+  
+  #ouvrir le menu d?roulant si il existe
+  if (is.null(try(remDr$findElements("css", '.body-show')[[1]]$clickElement(),silent = TRUE))){
+    remDr$findElements("css", '.body-show')[[1]]$clickElement()
+  }
+  
+  #aspirer le contenu de la page (cf script 1)
+  page_expo <- read_html (base_url$url[i])
+  
+  base_url$titre[i] <- as.character(paste(page_expo %>% html_nodes("h1") %>%
+                                            html_text(),collapse=""))
+  base_url$texte[i] <- as.character(paste(page_expo %>%
+                                            html_nodes("h1+ p, p:nth-child(4), p:nth-child(6), p:nth-child(8)") %>%
+                                            html_text(),collapse=""))
+  base_url$artistes[i] <- as.character(paste(page_expo %>%
+                                               html_nodes("h4") %>%
+                                               html_text(),collapse=""))
+  base_url$commissaires[i] <- as.character(paste(page_expo %>% html_nodes("h3+ p") %>%
+                                                   html_text(),collapse=""))
+  base_url$dates[i] <- as.character(page_expo %>% html_nodes(".event-date-text h2") %>%
+                                      html_text())}
+
+
+View(base_url)
+
+
+#4.3. On peut ?crire la m?me boucle en RSelenium
+for (i in 1: nrow(base_url)){
+  
+  #aller sur la i?me page web de la liste url
+  remDr$navigate(base_url$url[i])
+  Sys.sleep(5) #et attendre un peu pour laisser le temps de charger
+  
+  #ouvrir le menu d?roulant si il existe
+  if (is.null(try(remDr$findElements("css", '.body-show')[[1]]$clickElement(),silent = TRUE))){
+    remDr$findElements("css", '.body-show')[[1]]$clickElement()
+  }
+  
+  #aspirer le titre
+  title <- remDr$findElements("css selector", "h1")
+  title2 <- title[[1]] #les deux crochets indiquent qu'il s'agit du'n ?l?ment web et pas d'une liste
+  title3 <- title2$getElementText()
+  #et l'ajouter dans la base  
+  base_url$titre[i] <- title3
+  
+  #aspirer le texte
+  text <- remDr$findElements("css selector", ".event-content-left p")
+  text2 <- text[[1]] 
+  text3 <- text2$getElementText()
+  base_url$texte[i]<- text3
+  
+  #aspirer les dates
+  dates <- remDr$findElements("css selector", ".event-date-text h2")
+  dates2 <- dates[[1]] 
+  dates3 <- dates2$getElementText()
+  base_url$dates[i]<- dates3
+}  
+
+
+#4.4. Enregistrer la base
+#on peut enregistrer et exporter cette base
+write.csv2(base_url, "Base_url_PDT_8nov_raw.csv")
+
+
+
+#pour aller plus loin avec R Selenium: https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html#basic-navigation
+
+

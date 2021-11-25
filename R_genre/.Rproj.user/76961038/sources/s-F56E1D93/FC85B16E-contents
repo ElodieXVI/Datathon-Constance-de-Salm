@@ -1,0 +1,39 @@
+#### Sraping_Script_Seance 2
+
+#Objectifs: 
+#- D?terminer l'?chantillon pertinent
+#- obtenir une liste d'adresses html des pages ? scraper
+#- simuler un navigateur pour se d?placer sur une page web
+
+#0. Rep?rer les adrsses url dans la page 2020
+
+page_URL <- read_html ("https://www.palaisdetokyo.com/fr/liste/jaimerais-en-savoir-plus-sur-les-expositions-du-palais-de-tokyo-en")
+
+#nous allons d'abord r?colter tous les liens hypertexts:
+
+URL1 <- data.frame(url = as.character(page_URL %>% html_nodes("a") %>%
+                                            html_attr("href")))
+#on pr?cise ici que ce qui nous int?resse n'est pas du contenu comme la semaine derni?re (html_text)
+#mais le contenu de l'attribut : d'o? html_attr
+
+View(URL1)
+
+#cette base concerne trop de liens: on peut maintenant s?lectionner uniquement ceux qui nous int?ressent
+
+#la fonction "grep" permet d'identifier les lignes o? un mot/une expression appara?t
+grep(pattern = "/evenement/", a)
+
+#il faudrait juste garder les lignes 27 ? 26
+URL2 <- data.frame(URL[c(27:36),])
+View(URL2)
+colnames(URL2) <- c("fin") #on renomme pour avoir un nom de colonne plus commode
+
+#je l'appelle fin car on remarque qu'il manque le d?but de l'adresse http, que l'on va donc rajouter
+URL2$debut <- "https://www.palaisdetokyo.com"
+URL2$url <- paste(URL2$debut, URL2$fin, sep = "") #probl?me j'ai un espace: voir avec M
+View(URL2) #cela semble bien, je conserve uniquement la colonne qui m'int?resse et je l'enregistre
+
+liste_url <- URL2[,-c(1,2)]
+
+#on a une liste d'adresses url ? scrapper, que l'on peur enregistrer et qui servira pour faire tourner la boucle
+write.csv (liste_url , "liste_url1.csv") 
