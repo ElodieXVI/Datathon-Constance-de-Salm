@@ -18,4 +18,4 @@ The DHI's holdings document some 11,000 letters from the correspondence between 
 
 https://github.com/dhi-digital-humanities/constance-de-salm
 
-Constance de Salm used different hands to write her letters, making it difficult to recognise the text with Kraken and with the eScriptorium interface. To make the project feasible, we therefore chose to focus on letters written by one hand, the one that would have written the most letters for Constance of Salm from 1807 to 1842.
+Constance de Salm used different hands to write her letters, making it difficult to recognise the text with a model on Kraken. To make the project feasible, we therefore chose to focus on letters written by one hand, the one that would have written the most letters for Constance of Salm from 1807 to 1842.
