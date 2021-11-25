@@ -11,8 +11,11 @@ entier:
 sélectionné:
 ![nuagedemots](wordcloud%20Schlagwörter%20corpus%20sélectionné.PNG)
 
-Timeline (Palladio):
+Timeline (Palladio). Période intéressante, deuxième mariage, carriere:
 ![Timeline](timeline%20corpus%20séléctionné.PNG)
 
 Qui fait partie du réseau au plus fort de l'activité, c'est principalement le frère et les avocats (Palladio):
 ![reseau](reseau%20corpus%20sélectionné%20-%20focalisation%20temporelle%20en%20fonction%20de%20la%20quantité%20-%20resultat%20principalement%20frère%20et%20avocat.PNG)
+
+Noms de lieux. Dominant: Aachen, Tours, Coucy, Brüssel, Leipzig. Aussi: 4 lettres de Martinique (du frère de Constance). 
+![lieux](zentrale%20orte%201main.PNG)
