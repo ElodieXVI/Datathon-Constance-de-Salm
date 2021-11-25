@@ -6,6 +6,7 @@ import spacy
 from nltk.corpus import stopwords
 from textblob import Blobber
 from textblob_fr import PatternTagger, PatternAnalyzer
+import pandas as pd
 
 # Créer un Blobber pour faire de l'analyse sentiment avec nos données
 tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
@@ -42,4 +43,5 @@ for file in glob.glob('./test/documents/*'):
 
     results_complet[os.path.basename(file)] = result_sentiment
 
-    pprint(results_complet)
+    df = pd.DataFrame.from_dict(results_complet)
+    print(df.head())
