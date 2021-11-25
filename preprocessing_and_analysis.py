@@ -29,12 +29,10 @@ for file in glob.glob('./test/documents/*'):
 
     tokens = [word.lemma_ for word in doc_prep if word.text not in stops and not re.match('\W+|\d+|\w+’+', word.text)
               and word.pos_ in pos_list and len(word.text) > 1]
-    print(tokens)
+
     preprocessed = ''
     for token in tokens:
         preprocessed += ' ' + token
-
-    print(preprocessed)
 
     result_sentiment = 'en train de le trouver'
     if tb(preprocessed).sentiment[0] > 0.0:
