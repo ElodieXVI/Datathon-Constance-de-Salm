@@ -8,9 +8,6 @@ Les fonds proposés par le DHI documentent quelque 11 000 lettres issues de la c
 
 https://github.com/dhi-digital-humanities/constance-de-salm
 
-#Les sentiments dans la correspance de Constance de Salm
+#Les sentiments dans la correspondance de Constance de Salm
 
-À partir des lettres, nous souhaitons mener une analyse des sentiments 
-
-
-Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte par des logiciels comme Transkribus ou Kraken. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm.
+Constance de Salm employait pour la rédaction de ses lettres différentes mains, rendant difficile la reconnaissance du texte avec le logiciel  Kraken. Nous avons donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule main, celle qui aurait rédigée le plus de lettres pour Constance de Salm. À partir du corpus de lettres, nous souhaitons explorer 
