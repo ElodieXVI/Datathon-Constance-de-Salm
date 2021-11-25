@@ -43,5 +43,6 @@ for file in glob.glob('./test/documents/*'):
 
     results_complet[os.path.basename(file)] = result_sentiment
 
-    df = pd.DataFrame.from_dict(results_complet)
+    df = pd.DataFrame.from_dict(results_complet, orient='index', columns=['résultat'])
+    df.index.name = 'fichier'
     print(df.head())
