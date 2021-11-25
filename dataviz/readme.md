@@ -1,6 +1,8 @@
 # Dataviz
 ## Sondage de notre corpus sélectionné
 
+Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractérise cette partie du corps ?
+
 Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
 
 Comparaison des nuages de mots corpus entier, corpus sélectionné (Code: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Constance_de_Salm.ipynb)
