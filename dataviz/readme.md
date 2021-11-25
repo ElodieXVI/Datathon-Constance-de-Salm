@@ -5,11 +5,14 @@ Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractéris
 
 Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
 
-Comparaison des nuages de mots corpus entier, corpus sélectionné (Code: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Constance_de_Salm.ipynb)
+Comparaison des nuages de mots de colonne "Schlagwörter" corpus entier, corpus sélectionné (Code: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Constance_de_Salm.ipynb)
 entier:
 ![nuage de mots](wordcloud%20Schlagwörter%20corpus%20complet.PNG)
 sélectionné:
 ![nuage de mots](wordcloud%20Schlagwörter%20corpus%20sélectionné.PNG)
+
+Timeline de colonne "Schlagwörter" https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Constance_de_Salm.ipynb
+![Schlagwörter timeline](schlagwörter%20timeline.png)
 
 Timeline (Palladio). Période intéressante, deuxième mariage, carriere:
 ![Timeline](timeline%20corpus%20séléctionné.PNG)
@@ -24,3 +27,4 @@ Cercle proche (Graphcommons) Informations sur les relations dans la colonne aute
 Viz: https://graphcommons.com/graphs/7990c0fe-390e-4423-af2f-249f445118b6
 Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/dataviz/Close%20circle%20Constance%20de%20Salm%20(Beziehungsinformationen%20aus%20Spalte%20Verfasser%20u%20Empf%C3%A4nger).csv
 ![close circle](close%20circle.PNG)
+
