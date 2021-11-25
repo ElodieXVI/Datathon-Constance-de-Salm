@@ -1,0 +1,139 @@
+#### Sraping_Script_Seance 4: Finaliser la base de donn?es
+
+#Objectifs:
+# Cr?er des variables secondaires
+#v?rifier que tout va bien!
+
+library(questionr)
+library(dplyr)
+library(tidyr)
+
+#1. Petit moment de r?flexion: 
+
+#1.1. Listons les choses bizares:
+#>>> il n'est jamais trop tard, revenir am?liorer le script de scraping 
+#et relancer le scraping si besoin.
+
+
+#1.2 Quelles variables secondaires peut-on/veut-on cr?er?
+#>> discussion collective ? mener pour d?cider quelles variables cr?er
+
+
+#2. Cr?er des variables secondaires
+#quelques exemples
+
+#on cr?e une base pour garder une copie de notre scraping brut
+setwd("C:/Users/Brianne/Documents/Documents/Doctorat Sciences Po/Cours donn?s/ENS 2021 22/Master QESS/Scraping M2/Tests scrape R")
+base_expoPDT <- read.csv2("Base_url_PDT_19_20_raw.csv")
+View (base_expoPDT)
+
+#2.1. Manipuler des dates
+base_expoPDT2 <- separate(base_expoPDT, dates, sep="au|et le dimanche", into=c("date_debut", "date_fin"))
+View (base_expoPDT2)
+
+base_expoPDT2 <- separate(base_expoPDT2, date_debut, sep="samedi|Du", into=c("nul", "date_debut"))
+base_expoPDT2$nul <- NULL
+View (base_expoPDT2)
+
+#changer en format date
+library(lubridate)
+base_expoPDT2$date_fin2 <- dmy(base_expoPDT2$date_fin)
+base_expoPDT2$date_debut2 <- dmy(base_expoPDT2$date_debut)
+
+#on cr?e la variable dur?e:
+base_expoPDT2$duree <- base_expoPDT2$date_fin2 - base_expoPDT2$date_debut2
+
+base_expoPDT2$duree <- as.numeric(base_expoPDT2$duree)
+hist(base_expoPDT2$duree, breaks = 50)
+table(base_expoPDT2$duree)
+
+base_expoPDT2$duree_rec <- base_expoPDT2$duree
+base_expoPDT2$duree_rec [base_expoPDT2$duree <= 80 ] <- "moins de 81 jours"
+base_expoPDT2$duree_rec [base_expoPDT2$duree == 81 ] <- "81 jours"
+base_expoPDT2$duree_rec [base_expoPDT2$duree >= 82 ] <- "plus de 81 jours"
+
+freq(base_expoPDT2$duree_rec)
+
+#remarque: il faudra discuter collectivement de dur?es qui semblent pertinentes
+#pour l'ensemble des institutions ?tudi?es. 
+
+
+###2.2. Manipuler les donn?es 
+
+#s?parer les noms des artistes et des commissaires du reste du texte
+base_expoPDT2 <- separate(base_expoPDT2, texte, sep="Commissaire", into=c("texte", "commissaire"))
+View(base_expoPDT2)
+base_expoPDT2 <- separate(base_expoPDT2, commissaire, sep="Les artistes :", into=c("commissaire", "bio_artiste"))
+
+base_expoPDT2 <- separate(base_expoPDT2, texte, sep="Avec :", into=c("texte", "artistes"))
+
+base_expoPDT2 <- separate(base_expoPDT2, titre, sep="                         ", into=c("titre", "sous_titre"))
+View(base_expoPDT2)
+
+#On va finir en recodage manuel pour qualifier les artistes et les types d'exposition
+#on va d'abord distinguer les expositions collectives et les monographies
+
+## Recodage de base_expoPDT2$titre en base_expoPDT2$type_expo
+base_expoPDT2$type_expo <- base_expoPDT2$titre
+base_expoPDT2$type_expo[base_expoPDT2$titre == "... Et l'Obscur"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "alt+R, Alternative R?alit?"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Anticorps"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Carte Blanche ? Tom?s Saraceno"] <- "Tom?s Saraceno"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Futur, ancien, fugitif"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Kevin Rouillard - Le Grand mur"] <- "Kevin Rouillard"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "La Voix Lib?r?e"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "LASCO PROJECT #11"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "LASCO PROJECT #12"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Louis-Cyprien Rials, avec Ramon Film Productions"] <- "Louis-Cyprien Rials"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Nicolas Daubanes - L'Huile et l'Eau"] <- "Nicolas Daubanes"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Notre monde br?le"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Prince?sse?s des villes"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Jusqu'ici tout va bien"] <- "collectif"
+base_expoPDT2$type_expo[base_expoPDT2$titre == "Anticorps                      "] <- "collectif"
+
+#et on compl?te les noms d'artiste qui manquent avec le contenu du titre qui l'indiquent
+base_expoPDT2$artistes[is.na(base_expoPDT2$artistes) == T & base_expoPDT2$type_expo != "collectif"] <- base_expoPDT2$type_expo [is.na(base_expoPDT2$artistes) == T & base_expoPDT2$type_expo != "collectif"]
+base_expoPDT2$artistes[is.na(base_expoPDT2$artistes) == T & base_expoPDT2$type_expo == "collectif"] <- base_expoPDT2$type_expo [is.na(base_expoPDT2$artistes) == T & base_expoPDT2$type_expo == "collectif"]
+
+#? voir si on conserve la liste des noms des collectifs quand on les a ou pas
+#par ailleurs on pourrait distinguer exposition collevctive (individus expos?s en m?me temps)
+#et collectifs d'artistes (qui ont choisi de travailler ensemble)
+
+###2.3. Induire le sexe ? partir du pr?nom de l'artiste
+
+#Ensuite, pour les monographies, on distingue hommes et femmes
+#il faut d'abord isoler le pr?nom des artistes 
+base_expoPDT2$prenom <- base_expoPDT2$type_expo
+base_expoPDT2$prenom [base_expoPDT2$prenom == "collectif"] <- NA
+
+base_expoPDT2 <- separate(base_expoPDT2, prenom, sep=" ", into=c("prenom", "nul"))
+base_expoPDT2$nul <- NULL
+
+#puis on attribue le genre en fonction du pr?nom
+library(gender)
+
+#attention, il faut cr?er un objet pour utiliser la fonction gender
+prenom <- gender(base_expoPDT2$prenom, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia"), years = c(1950, 2012))
+#remarque: on peut adapter la m?thode et les pays cibl?s
+
+prenom$name
+prenom$gender
+
+#pour cr?er la variable gere avec ce package, on ets oblig? de faire un peu de manipulation de donn?es
+#on a 2 bases, la notre (base_expoPDT2) et la base pr?nom ou ? des names sont associ?s des gender
+#et on associe les deux bases par les prenom = name
+base_expoPDT3 <- left_join(base_expoPDT2, select(prenom, name, gender), by= c("prenom"= "name"))
+View(base_expoPDT3)
+
+#on renomme pour ?viter les confusions
+base_expoPDT3$genre_artiste <- base_expoPDT3$gender 
+freq(base_expoPDT3$genre_artiste)
+
+####3. On cr?e une base propre pr?te ? ?tre analys?e ####
+
+#on ne conserve que les variables utiles pour faire de la place
+base_expoPDT4 <- base_expoPDT3 [c(2:7, 11:15, 17)]
+View(base_expoPDT4)
+
+#et on enregistre le r?sultat >> ? mettre sur le drive d'ici vendredi!
+write.csv(base_expoPDT4, "base_PDT_15nov")

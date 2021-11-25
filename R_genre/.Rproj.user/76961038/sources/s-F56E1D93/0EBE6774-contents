@@ -11,7 +11,6 @@ data <- read_excel("Constance_de_Salm_Special_lettres.xlsx")
 data$ID <- data$...1
 data$pers_autre <- data$`Weitere Personen`
 
-
 #Séparer les quand il y a qu'une personne de citée ou deux : 
 data<- data  %>% 
   separate(pers_autre, sep=";", into=c("pers_autre1", "pers_autre2"))
@@ -44,7 +43,7 @@ data3 <- merge(data, data2, by= 1)
 
 #Détermination du genre : 
 
-prenom <- gender(data3$prenom1, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1880, 1920))
+prenom <- gender(data3$prenom1, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1950, 2012))
 
 prenom$name
 prenom$gender
@@ -52,7 +51,7 @@ prenom$gender
 data_genre <- left_join(data3, select(prenom, name, gender), by= c("prenom1"= "name"))
 
 
-prenom <- gender(data3$prenom2, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1880, 1920))
+prenom <- gender(data3$prenom2, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1807, 1842))
 
 prenom$name
 prenom$gender
@@ -85,7 +84,7 @@ ggplot(data_genre_comp) +
 ####Genre des auteurs : ####
 df <- read_excel("Constance_de_Salm_Special_lettres.xlsx")
 df$ID <- data$...1
-table(df$ID)
+
 ## Recodage de df$Verfasser en df$Verfasser_rec
 df$Verfasser_rec <- fct_recode(df$Verfasser,
   "Monsieur" = "Chambert, Monsieur (Anwalt CdS' in Tours)",
@@ -144,36 +143,9 @@ freq(df_3$Verfasser1_gender)
 
 #Pour les deuxième auteur : ####
 
-## Recodage de df_3$Verfasser_2 en df_3$Verfasser2_gender
-df_3$Verfasser2_gender <- fct_recode(df_3$Verfasser_2,
-  "Male" = " Adolphe",
-  "Female" = " Anne Marguerite",
-  "Female" = " Constance",
-  "Female" = " Joséphine")
+
 
 
 #Écriture du fichier :
-df_3$Verfasser_1 <- NULL
-df_3$Verfasser_2 <- NULL
-df_3$ID <- NULL
 
-
-write_csv2(df_3, "CdS_Lettres_genre.csv")
-
-
-dat_merge <- df_3 %>% select("...1","Verfasser1_gender","Verfasser2_gender")
-
-
-data_genre_comp$prenom1 <- NULL
-data_genre_comp$prenom2 <- NULL
-
-data_complet <- merge(data_genre_comp, dat_merge, by=1)
-
-data_complet$ID <- data_complet$...1
-
-doublons <- which(duplicated(data_complet$ID))
-
-data_complet_bon <- data_complet[-doublons,] %>% data.frame
-data_complet_bon$ID <- NULL
-
-write_csv2(data_complet_bon, "CdS_Lettres_genre.csv")
+write_csv2(data_genre_comp, "CdS_Lettres_genre.csv")

@@ -1,0 +1,10 @@
+From Type,From Name,Edge,To Type,To Name,Weight
+Mann,"Théis, Alexandre Étienne Guillaume, baron de",Geschwister,Frau,Constance de Salm,1
+Frau,"Théis, Anne Marguerite de, geb. de Saint-Mars",verheiratet,Mann,"Théis, Alexandre Étienne Guillaume, baron de",1
+Mann,"Saint-Mars, général vicomte de",Geschwister,Frau,"Théis, Anne Marguerite de, geb. de Saint-Mars",1
+Mann,"Pailliet, Jean Baptiste Joseph","ihr Anwalt in Orléans, um 1829",Frau,Constance de Salm,1
+Mann,"Drais, Pierre",Vertrauensperson,Frau,Constance de Salm,1
+Frau,"Théis, Joséphine de, verh. Saint-Cricq, gen. Finette",Nichte,Frau,Constance de Salm,1
+Mann,"Théis, Adolphe de",,,,1
+Mann,"Chambert, Monsieur",ihr Anwalt in Tours,Frau,Constance de Salm,1
+Mann,"Salm-Reifferscheidt-Dyck, Joseph Fürst und Altgraf zu",verheiratet,Frau,Constance de Salm,1
