@@ -1,0 +1,272 @@
+###Ajout genre pour les auteurs des lettres : ####
+
+dfmain$Verfasser_rec <- fct_recode(dfmain$Verfasser,
+                               "Monsieur" = "Chambert, Monsieur (Anwalt CdS' in Tours)",
+                               "Pierre" = "Drais, Pierre (Vertrauensmann der CdS)",
+                               "Pierre ; Constance" = "Drais, Pierre (Vertrauensmann der CdS); Salm, Constance de (CdS)",
+                               "Alexandre" = "Duval, Alexandre, eigentl. Alexandre-Vincent Pineux",
+                               "Amaury" = "Duval, Amaury, eigentl. Charles-Alexandre-Amaury Pineux",
+                               "Louis-Mathieu" = "Langlès, Louis-Mathieu",
+                               "Edme" = "Mentelle, Edme",
+                               "Jean Baptiste Joseph" = "Pailliet, Jean Baptiste Joseph (Anwalt der CdS in Orléans, um 1829)",
+                               "Constance" = "Salm, Constance de (CdS)",
+                               "Adolphe" = "Théis, Adolphe de",
+                               "Alexandre" = "Théis, Alexandre Étienne Guillaume, baron de (Bruder der CdS)",
+                               "Alexandre ; Adolphe" = "Théis, Alexandre Étienne Guillaume, baron de (Bruder der CdS); Théis, Adolphe de",
+                               "Alexandre ; Anne Marguerite" = "Théis, Alexandre Étienne Guillaume, baron de (Bruder der CdS); Théis, Anne Marguerite de, geb. de Saint-Mars (Frau des Bruders der CdS)",
+                               "Anne Marguerite" = "Théis, Anne Marguerite de, geb. de Saint-Mars (Frau des Bruders der CdS)",
+                               "Anne Marguerite ; Joséphine" = "Théis, Anne Marguerite de, geb. de Saint-Mars (Frau des Bruders der CdS); Théis, Joséphine de, verh. Saint-Cricq, gen. Finette",
+                               "Charles" = "Théis, Charles Constant de",
+                               "Joséphine" = "Théis, Joséphine de, verh. Saint-Cricq, gen. Finette",
+                               "Jean-François" = "Thurot, Jean-François")
+dfmain$Verfasser_rec <- as.character(dfmain$Verfasser_rec)
+## Recodage de dfmain$Verfasser_rec
+dfmain$Verfasser_rec <- fct_recode(dfmain$Verfasser_rec,
+  "Anna Caroline" = "Arnim-Boitzenburg, Anna Caroline von, geb. von der Schulenburg",
+  "Asfeld" = "Asfeld, L. C. d'",
+  "Maurice" = "Audouin de Géronval, Maurice",
+  "Louis" = "Auger, Louis Simon",
+  "Marguerite" = "Babois, Marguerite Victoire",
+  "Antoine-Alexandre" = "Barbier, Antoine-Alexandre",
+  "Louis-Nicolas" = "Barbier, Louis-Nicolas",
+  "Anne-Marie" = "Beaufort d'Hautpoul, Anne-Marie, comtesse de, geb. de Montgeroult",
+  "Armand" = "Béthune-Charost, Armand Joseph, duc de",
+  "Anne" = "Bignan, Anne",
+  "Monsieur" = "Brach, Monsieur de (Secrétaire du Lycée des Sciences et Arts à Marseille)",
+  "Fortunée" = "Briquet, Fortunée",
+  "Jean-François" = "Cailhava, Jean-François",
+  "Henri" = "Carrion de Nisas, Henri de, baron",
+  "Luigi" = "Cherubini, Luigi",
+  "Panagiotis" = "Codrika, Panagiotis",
+  "Benjamin" = "Constant, Benjamin",
+  "Sophie" = "Cottin, Sophie",
+  "Michel" = "Cubières-Palmézeaux, Michel de",
+  "Benoît" = "Dandré, Benoît",
+  "Lalande" = "Desroches, L.B., geb. Lalande",
+  "François-Marie-Guillaume" = "Duault, François-Marie-Guillaume",
+  "Marie-Émile-Guillaume" = "Duchosal, Marie-Émile-Guillaume",
+  "Jean-François" = "Ducis, Jean-François",
+  "Julien-Michel" = "Dufour de Saint Pathus, Julien-Michel",
+  "Adélaïde-Gillette" = "Dufresnoy, Adélaïde-Gillette, geb. Billet",
+  "Alexandre" = "Dumas, Alexandre",
+  "Monsieur" = "Dutrône, Monsieur",
+  "Wilhelmine" = "Eckardt, Wilhelmine",
+  "Monsieur" = "Ferrari, Monsieur",
+  "Louis" = "Fontanes, (Jean-Pierre) Louis, marquis de",
+  "Joseph" = "Fortia d'Urban, Agricol-Joseph marquis de (vice-président du Lycée de Vaucluse)",
+  "Madame" = "François de Méricourt, Madame",
+  "Constant" = "Francq, Constant de",
+  "Félix" = "Francq, Félix, baron de",
+  "Pierre-Louis" = "Ginguené, Pierre-Louis",
+  "Anne-Louis" = "Girodet-Trioson, Anne-Louis, eigentl. Girodet de Roussy",
+  "Monsieur" = "Grandmaison, Monsieur de (Directeur de l'Athénée des étrangers)",
+  "André" = "Grétry, André-Ernest-Modeste",
+  "Paul" = "Gudin de La Brenellerie, Paul-Philippe",
+  "François" = "Hoffman(n), François-Benoît",
+  "Theodor" = "Holz, Theodor (Bürgermeister von Hemmerden 1828-1843)",
+  "Herrmann" = "Hompesch-Rurich, Graf Herrmann Philipp von (1797-1857)",
+  "Thérèse-Angélique" = "Hompesch, Thérèse-Angélique, Gräfin von, geb. von Aarschot-Schoonhoven",
+  "Frédéric" = "Houdetot, Frédéric d'",
+  "Karl" = "Ingersleben, Karl Heinrich Ludwig von (Oberpräsident der Rheinprovinz)",
+  "Marc-Antoine" = "Jullien de Paris, Marc-Antoine",
+  "Silva" = "La Chabeaussière, Silva Poisson de",
+  "Joseph" = "La Fayette, Joseph du Motier, marquis de",
+  "Pierre" = "La Suze, Pierre Joseph de Sars de",
+  "Jean" = "Labouïsse-Rochefort, Jean-Pierre-Jacques-Auguste de",
+  "Jean" = "Ladoucette, Jean Charles François, baron de",
+  "Monsieur" = "Lalanne, Monsieur",
+  "Charles" = "Lambrechts, Charles Joseph Mathieu",
+  "Étienne" = "Lantier, Étienne-François de",
+  "Monsieur" = "Larnac, Monsieur",
+  "Aglaé" = "Laya, Aglaé, in zweiter Ehe Comte",
+  "Chrétien-Siméon" = "Le Prévost d'Iray, Chrétien-Siméon, vicomte",
+  "F." = "Lebrun, F.",
+  "Joseph" = "Lefrançois de Lalande, Joseph Jérôme",
+  "Gabriel" = "Legouvé, Gabriel-Marie",
+  "Gabriel ; Monsieur" = "Legouvé, Gabriel-Marie; Prévost de Longpérier, Monsieur",
+  "Pierre" = "Lemazurier, Pierre-David",
+  "Judith" = "Locquenghien, Judith Anna Maria von, geb. von Dorth",
+  "Louis" = "Louis-Mathieu",
+  "Eugène" = "Maison, Eugène, vicomte (Sohn des Nicolas Joseph)",
+  "Charles" = "Malo, Charles",
+  "Michel-Ange" = "Mangourit du Champ-Duguet, Michel-Ange",
+  "Louis" = "Marchangy, Louis Antoine François Émilien (Ehekandidat 1812 für Minette)",
+  "Jean" = "Martini, Jean Paul Égide, eigentl. Johann Paul Ägidius Martin bzw. Schwarzendorf",
+  "Louis" = "Mercier, Louis-Sébastien",
+  "Simon" = "Miger, Simon Charles",
+  "Louis" = "Millin de Grandmaison, Aubin-Louis",
+  "Monsieur" = "Mirault, Monsieur (Claude-François?, Mitglied des Athénée des arts)",
+  "Male" = "Mittié, P.S. fils",
+  "Gaspard" = "Monge, Gaspard, comte de Péluse",
+  "Marie" = "Montanclos, Marie-Emilie de",
+  "Albert" = "Montémont, Albert",
+  "Monsieur" = "Montferrand, Monsieur de",
+  "Caroline" = "Montigny, Caroline de",
+  "Célestin" = "Nanteuil, C. de",
+  "Nicolas" = "Neufchâteau, Nicolas François de",
+  "Grégoire" = "Orloff, Grégoire, comte de",
+  "François" = "Peintre, François",
+  "Louis-Benoît" = "Picard, Louis-Benoît",
+  "Monsieur" = "Pié, Monsieur",
+  "Fabien" = "Pillet, Fabien",
+  "Nicolas" = "Ponce, Nicolas",
+  "Gaspard" = "Prony, Gaspard Riche, baron de",
+  "Paul" = "Pröpper, Paul Joseph von",
+  "Paul" = "Raboteau, Pierre Paul",
+  "Jacques" = "Révéroni, Jacques-Antoine, baron de Saint-Cyr",
+  "Pierre" = "Rigaud, Pierre-Augustin",
+  "John" = "Ross, Hauptmann John",
+  "Charlotte" = "Sachsen-Gotha-Altenburg, Charlotte Herzogin von",
+  "Madame" = "Saint-Pray, Madame Ar. (?) de (Redakteurin des \"\"Almanach des muses\"\")",
+  "Sophie" = "Salis, Sophie de, verh. baronne de Triqueti",
+  "Joseph" = "Salm-Reifferscheidt-Dyck, Joseph Fürst und Altgraf zu (SRD)",
+  "Jean" = "Sanson de Pongerville, Jean-Baptiste",
+  "Charles" = "Saudray, général Charles-Emmanuel Gaul(l)ard de",
+  "François" = "Sauvo, François",
+  "J.P." = "Sedaine, J.P.",
+  "Michael" = "Sinsteden, Michael Franz Severin",
+  "Jean" = "Suard, Jean Baptiste Antoine",
+  "Charles" = "Talleyrand-Périgord, Charles-Maurice de",
+  "François" = "Talma, François-Joseph",
+  "Pierre" = "Tissot, Pierre-François",
+  "Michele" = "Torcia, Michele",
+  "Joseph" = "Valant, Joseph-Honoré",
+  "Charlotte" = "Vanhove, Charlotte, gen. Caroline, verh. Talma, dann verh. comtesse de Châlot",
+  "Étienne" = "Vigée, Étienne",
+  "Mathieu" = "Villenave, Mathieu-Guillaume-Thérèse",
+  "Madame" = "Villiers, Madame N.M.",
+  "Ennio" = "Visconti, Ennio Quirino",
+  "Mélanie" = "Waldor, Mélanie, geb. Villenave")
+
+
+dfmain <- dfmain  %>% 
+  separate(Verfasser_rec, sep=";", into=c("Verfasser_1", "Verfasser_2"))
+
+
+dfmain2 <- dfmain %>% select("id","Verfasser_1", "Verfasser_2")
+
+prenom1 <- gender(dfmain2$Verfasser_1, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1880, 1920))
+prenom$gender
+prenom$name
+
+dfmain3 <- left_join(dfmain, select(prenom, name, gender), by= c("Verfasser_1"= "name"))
+
+doublons <- which(duplicated(dfmain3$id))
+dfmain3 <- dfmain3[-doublons,] %>% data.frame
+
+
+dfmain3$Verfasser_1genre <- dfmain3$gender
+dfmain3$gender <- NULL
+freq(dfmain3$Verfasser_1genre)
+
+prenom1 <- gender(dfmain2$Verfasser_2, method = c("ssa", "ipums", "napp", "kantrowitz", "genderize", "demo"), countries = c("United States", "Canada", "United Kingdom", "France", "Italia", "Germany"), years = c(1880, 1920))
+prenom$gender
+prenom$name
+
+dfmain4 <- left_join(dfmain3, select(prenom, name, gender), by= c("Verfasser_2"= "name"))
+
+dfmain4$Verfasser_2genre <- dfmain4$gender
+dfmain4$gender <- NULL
+freq(dfmain4$Verfasser_1genre)
+
+
+
+##Chercher les NA :
+## Recodage de dfmain4$Verfasser_1genre
+dfmain4$Verfasser_1genre <- fct_recode(dfmain4$Verfasser_1genre,
+  "Female" = "female",
+  "Male" = "male")
+table(dfmain4$Verfasser_1genre, dfmain4$Verfasser_1, useNA = "ifany")
+
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Alexandre"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Monsieur"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Constance"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Anne Marguerite"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Edme"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Anne Marguerite "] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Jean Baptiste Joseph"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Pierre "] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Louis-Mathieu"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Joséphine"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Jean-François"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Alexandre "] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Adélaïde-Gillette"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Aglaé"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Albert"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Alibert, Jean-Louis, baron Amalric,"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == " François de Sales"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Amar, Monsieur"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Amaury"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Andrieux, François"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Anna Caroline"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Anne-Louis"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Anne-Marie"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Antoine-Alexandre"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Armand"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Benjamin"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Benoît"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Caroline"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Célestin"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Charlotte"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Chrétien-Siméon"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Dauriat, Louise Debeauvoir,"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Wilhelmine"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Thérèse-Angélique"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Theodor"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Sophie"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Simon"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Silva"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Pierre-Louis"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Paul"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Panagiotis"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Panagiotis"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Nicolas"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Michele"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Michel-Ange"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Michel"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Michael"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Mélanie"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Maurice"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Mathieu"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Marie-Émile-Guillaume"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Marguerite"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Marc-Antoine"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Male"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Madame"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Luigi"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Louis-Nicolas"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Louis-Benoît"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Julien-Michel"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Judith"] <- "Female"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "John"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Jacques"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Herrmann"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Henri"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Grégoire"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Gaspard"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Gabriel "] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Gabriel"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Frédéric"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "François-Marie-Guillaume"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "François"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Félix"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Fabien"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Eugène"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Étienne"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == " Rémi"] <- "Male"
+dfmain4$Verfasser_1genre [dfmain4$Verfasser_1 == "Dauriat, Louise Debeauvoir,"] <- "Male"
+
+
+dfmain4$Verfasser_2genre <- dfmain4$gender 
+dfmain4$gender <- NULL
+
+freq(dfmain4$Verfasser_2genre)
+table(dfmain4$Verfasser_2genre, dfmain4$Verfasser_2, useNA = "ifany")
+dfmain4$Verfasser_2genre [dfmain4$Verfasser_2 == " Monsieur"] <- "Male"
+
+dfmain4$Verfasser_2 <- NULL
+dfmain4$Verfasser_1 <- NULL
+
+
+write_csv2(dfmain4, "CdS_main_complet.csv")
+

@@ -62,6 +62,11 @@ dfmain$main2 <- NULL
 dfmain$main3 <- NULL
 dfmain$main4 <- NULL
 
+for (effectif in seq(1,nrow(dfmain))){
+  dfmain$id[effectif] <- effectif
+}
+
+
 write_csv2(dfmain, "CdS_main_complet.csv")
 
 
