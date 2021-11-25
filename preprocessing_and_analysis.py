@@ -8,6 +8,7 @@ from textblob import Blobber
 from textblob_fr import PatternTagger, PatternAnalyzer
 import pandas as pd
 
+
 # Créer un Blobber pour faire de l'analyse sentiment avec nos données
 tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
 
@@ -26,11 +27,15 @@ results_complet = {}
 for file in glob.glob('./test/documents/*'):
     print('Working on:', os.path.basename(file))
 
-    doc_prep = nlp(open(file, 'r').read())
+    text_simple = open(file, 'r').read()
+    # text_simple = re.sub(r'(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)', ' ', text_simple) # Pour
+    # effacer les liens
+    text_simple = re.sub(r'\W+', ' ', text_simple)
+    doc_prep = nlp(text_simple)
     # Il faut ajouter seulement des lemmas qui sont assez longs, qui n'apparaissent pas dans la liste de stopwords
     # et dont le Part of Speech tag doit être un nom, un verbe ou un adjective
     tokens = [word.lemma_ for word in doc_prep if word.text not in stops and not re.match('\W+|\d+|\w+’+', word.text)
-              and word.pos_ in pos_list and len(word.text) > 1]
+              and word.pos_ in pos_list and len(word.text) > 2]
 
     preprocessed = ''
     for token in tokens:
