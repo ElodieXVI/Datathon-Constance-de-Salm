@@ -176,4 +176,15 @@ doublons <- which(duplicated(data_complet$ID))
 data_complet_bon <- data_complet[-doublons,] %>% data.frame
 data_complet_bon$ID <- NULL
 
+data_complet_bon$pers_autre1_prénom <- NULL
+data_complet_bon$pers_autre2_prénom <- NULL
+data_complet_bon$pers_autre1_nom <- NULL
+data_complet_bon$pers_autre2_nom <- NULL
+
+library()
 write_csv2(data_complet_bon, "CdS_Lettres_genre.csv")
+
+
+
+
+
