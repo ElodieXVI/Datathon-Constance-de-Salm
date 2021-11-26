@@ -1,0 +1,359 @@
+#Le genre de la surestimation ####
+library(tidyverse)
+library(questionr)
+library(survey)
+library(gtsummary)
+
+dfw <- svydesign(ids = ~1, data = df_bv, weights = ~ df_bv$pspwght)
+
+##Graphiques différences femmes-hommes ####
+#Est-ce qu'il y a des moyennes de réponses à ces questions significativement différentes par genre ?###
+t.test(data$Q6 ~ data$sexe) #p-value = 6.373e-14 #intervalles : 0.4861271-0.8268502
+#F : 4.053462           H:  3.396973 
+
+dataw %>%
+  tbl_svysummary(
+    include = c("sexe", "Q6"), by=sexe, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+svymean(~Q6, dataw)
+summary(data$Q6)
+sd(data$Q6)
+
+
+g4 <- ggplot(data) +
+  aes(x = Q6, fill = sexe) +
+  geom_histogram(bins = 100L) +
+  scale_fill_hue(direction = 1) +
+  theme_linedraw()
+
+g4 + scale_x_continuous(name="Q_générale (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+ggplot(data) +
+  aes(x = diplome, y = Q6, colour = sexe, fill = sexe) +
+  geom_boxplot(alpha=0.5, position = position_dodge(width=0.8), fatten=NULL)+ 
+  stat_summary(fun.y = mean, geom = "point", aes(ymax = ..y.., ymin = ..y..), width=0.65,size = 1.5, linetype = "solid",position = position_dodge(width=0.7))+
+  theme_minimal()
+
+
+p <- ggplot(data) +
+  aes(x = clust_complet_rec, y = Q6) +
+  geom_boxplot(shape = "circle", fill = "#EF562D") +
+  stat_summary(fun=mean, geom="point", shape=20, size=2, color="white") +
+  theme_linedraw() +
+  facet_wrap(vars(sexe))
+
+
+ggplot(data) +
+  aes(x = FR_3, y = Q6) +
+  geom_boxplot(shape = "circle", fill = "#EF562D") +
+  theme_linedraw() +
+  facet_wrap(vars(sexe))
+
+g4 <- ggplot(data) +
+  aes(x = Q6, y = Q7, colour = sexe) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_linedraw()
+g4 + geom_jitter() + scale_x_continuous(limits=c(0, 10),breaks = c(0,1,2,3,4,5,6,7,8,9, 10))+ scale_y_continuous(limits=c(0, 10),breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+
+#Et dans ESS7 :
+df_bv$gndr <- fct_recode(df_bv$gndr,
+                         "Homme" = "Male",
+                         "Femme" = "Female")
+
+df_bv$gndr <- fct_relevel(
+  df_bv$gndr,
+  "Femme", "Homme")
+
+df_bv$diplome <- fct_relevel(
+  df_bv$diplome,
+  "Aucun diplôme", "Brevet des collèges, BEPC, DNB, brevet élémentaire",
+  "CAP, BEP ou équivalent", "Baccalauréat", "Bac +2", "Bac +3 / Bac +4",
+  "Bac +5 ou plus")
+
+ggplot(df_bv) +
+  aes(x = noimbro, fill = gndr) +
+  geom_histogram(bins = 100L) +
+  scale_color_hue(direction = 1) +
+  theme_linedraw()
+
+ggplot(df_bv) +
+  aes(x = diplome, y = noimbro) +
+  geom_boxplot(shape = "circle", fill = "#51C051") +
+  theme_linedraw() +
+  facet_wrap(vars(gndr))
+
+
+ggplot(df_bv) +
+  aes(x = diplome, y = noimbro, fill = gndr) +
+  geom_boxplot(shape = "circle") +
+  stat_summary(fun=mean, geom="point", color="white") +
+  theme_linedraw() +
+  facet_wrap(vars(gndr))
+
+##Filtrons et repondérons :####
+table(data$sexe)
+femme <- filter(data, data$sexe == "Femme")
+homme <- filter(data, data$sexe == "Homme")
+
+#Pondération femme
+mean(femme$pond1, na.rm = T) #23319.18
+sum(femme$pond1)
+femme$pond <- femme$pond1/23319.18
+sum(femme$pond)
+mean(femme$pond, na.rm = T) #1
+
+#Pondération homme
+mean(homme$pond1, na.rm = T) #28129.64
+sum(homme$pond1)
+homme$pond <- homme$pond1/28129.64
+sum(homme$pond)
+mean(homme$pond, na.rm = T) #1
+
+femmew <- svydesign(ids = ~1, data = femme, weights = ~ femme$pond)
+hommew <- svydesign(ids = ~1, data = homme, weights = ~ homme$pond)
+
+#Pour ess :
+ess_femme <- filter(df_bv, df_bv$gndr == "Femme")
+ess_homme <- filter(df_bv, df_bv$gndr == "Homme")
+
+mean(df_bv$pspwght)
+#Pondération femme
+mean(ess_femme$pspwght, na.rm = T) #0.9819827
+sum(ess_femme$pspwght)
+ess_femme$pond <- ess_femme$pspwght/0.9819827
+sum(ess_femme$pond)
+mean(ess_femme$pond, na.rm = T) #1
+
+#Pondération homme
+mean(ess_homme$pspwght, na.rm = T) #0.9682838
+sum(ess_homme$pspwght)
+ess_homme$pond <- ess_homme$pspwght/0.9682838
+sum(ess_homme$pond)
+mean(ess_homme$pond, na.rm = T) #1
+
+essfemmew <- svydesign(ids = ~1, data = ess_femme, weights = ~ ess_femme$pond)
+esshommew <- svydesign(ids = ~1, data = ess_homme, weights = ~ ess_homme$pond)
+
+##Différences de moyennes ####
+#diplome :
+femmew %>%
+  tbl_svysummary(
+    include = c("diplome", "Q6"), by = diplome,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p(statistic = list(all_continuous() ~ "{mean}"))
+
+hommew %>%
+  tbl_svysummary(
+    include = c("diplome", "Q6"), by = diplome,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+femmeessw %>%
+  tbl_svysummary(
+    include = c("diplome", "noimbro"), by = diplome,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+hommeessw %>%
+  tbl_svysummary(
+    include = c("diplome", "noimbro"), by = diplome,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+#age :
+ggplot(femme, aes(x = age, y = Q6)) +
+  geom_point(alpha = 0.2, color = "pink") +
+  geom_smooth(method = "lm", se = T, color = "blue") +
+  xlab("age") +
+  ylab("Q_generale (Sur 10 personnes en France)") +
+  theme_linedraw()
+
+reg <- lm(femme$Q6 ~ femme$age)
+summary(reg)
+
+ggplot(homme, aes(x = age, y = Q6,)) +
+  geom_point(alpha = 0.2, color = "skyblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  xlab("age") +
+  ylab("Q_generale (Sur 10 personnes en France)") +
+  theme_linedraw()
+
+reg <- lm(homme$Q6 ~ homme$age)
+summary(reg)
+
+ggplot(ess_femme, aes(x = agea, y = noimbro)) +
+  geom_point(alpha = 1, color = "red") +
+  geom_smooth(method = "lm", se = T, color = "blue") +
+  xlab("age") +
+  ylab("Q_generale (Sur 10 personnes en France)") +
+  theme_linedraw()
+
+ggplot(ess_homme, aes(x = agea, y = noimbro)) +
+  geom_point(alpha = 1, color = "skyblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  xlab("age") +
+  ylab("noimbro") +
+  theme_linedraw()
+
+#Classe de la classification : 
+
+femmew %>%
+  tbl_svysummary(
+    include = c("clust_complet_rec", "Q6"), by = clust_complet_rec,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+hommew %>%
+  tbl_svysummary(
+    include = c("clust_complet_rec", "Q6"), by = clust_complet_rec,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+
+ggplot(data) +
+  aes(x = clust_complet_rec, y = Q6, fill = sexe) +
+  geom_boxplot(shape = "circle") +
+  stat_summary(fun=mean, geom="point", color="white") +
+  theme_linedraw() +
+  facet_wrap(vars(sexe))
+
+#avec csp_rec : 
+
+femmew %>%
+  tbl_svysummary(
+    include = c("csp_rec", "Q6"), by = csp_rec,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+hommew %>%
+  tbl_svysummary(
+    include = c("csp_rec", "Q6"), by = csp_rec,
+    statistic = list(all_continuous() ~ "{mean}")) %>% 
+  add_p()
+
+ggplot(data) +
+  aes(x = csp_rec, y = Q6, fill = sexe) +
+  geom_boxplot(shape = "circle") +
+  stat_summary(fun=mean, geom="point", color="white") +
+  theme_linedraw() +
+  facet_wrap(vars(sexe))
+
+
+
+##Anova à deux facteurs :####------------------------------------------
+### croisement avec diplome*sexe ###
+library(Rmisc)
+diplome <- summarySE(data,measurevar="Q6",groupvars=c("diplome","sexe"))
+p <- position_dodge(0.1) 
+p_dipl <- ggplot(diplome) +
+  aes(x = diplome, y = Q6, colour = sexe, fill = sexe, group = sexe) +
+  geom_errorbar(aes(ymin=Q6-ci, ymax=Q6+ci), width=.1, position=p) +
+  geom_line(position=p, size=0.5) +
+  geom_point(position=p, size=1) + 
+  theme_linedraw()
+p_dipl+ scale_y_continuous(name="Q_générale (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+
+mod_dipl <- lm(Q6~diplome * sexe, contrasts=list(diplome=contr.sum, sexe=contr.sum), data=data) 
+summary(mod1)
+
+par(mfrow=c(2,2)) 
+plot(mod_dipl,1) + plot(mod_dipl,2) + plot(mod_dipl) + plot(mod_dipl,3) 
+
+#hypothèse de normalité : nécessaire d’obtenir une p-value > 0.05.
+shapiro.test(residuals(mod_dipl)) #< 2.2e-16
+
+data$dipl_sexe <- interaction(data$diplome, data$sexe, sep="_")
+#homégénéité des résidus : nécessaire d’obtenir une p-value > 0.05
+bartlett.test(residuals(mod1)~data$dipl_sexe) #p-value = 0.002423
+
+#Les deux tests sont rejetés, on tente une transfo log : 
+
+mod_dipllog <- lm(log(Q6 +1)~diplome * sexe, contrasts=list(diplome=contr.sum, sexe=contr.sum), data=data) 
+summary(mod2)
+
+plot(mod_dipllog,1) + plot(mod_dipllog,2) + plot(mod_dipllog) + plot(mod_dipllog,3) 
+ 
+shapiro.test(residuals(mod_dipllog)) 
+bartlett.test(residuals(mod_dipllog)~data$dipl_sexe)
+
+#les deux résultats restent limites... je force quand même
+
+library(car)
+Anova(mod_dipl, type=3)
+Anova(mod_dipllog, type=3) #avec modification l'interaction perd sa significativité...
+
+## classes*sexe ##---
+classes <- summarySE(data,measurevar="Q6",groupvars=c("clust_complet_rec","sexe"))
+p_classes <- ggplot(classes) +
+  aes(x = clust_complet_rec, y = Q6, colour = sexe, fill = sexe, group = sexe) +
+  geom_errorbar(aes(ymin=Q6-ci, ymax=Q6+ci), width=.1, position=p) +
+  geom_line(position=p, size=1) +
+  geom_point(position=p, size=1)+
+  theme_linedraw()
+p_classes + scale_y_continuous(name="Q_générale (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+data$clust_sexe <- interaction(data$clust_complet_rec, data$sexe, sep="_")
+mod_clust <- lm(Q6~clust_complet_rec * sexe, contrasts=list(clust_complet_rec=contr.sum, sexe=contr.sum), data=data) 
+summary(mod_clust )
+
+par(mfrow=c(2,2)) 
+plot(mod_clust,1) + plot(mod_clust,2) + plot(mod_clust) + plot(mod_clust,3) 
+
+shapiro.test(residuals(mod_clust)) # < 2.2e-16
+
+bartlett.test(residuals(mod_clust)~data$clust_sexe) #p-value = 0.000633
+
+#Nouvel échec, je tente :
+mod_clustlog <- lm(log(Q6+1)~clust_complet_rec * sexe, contrasts=list(clust_complet_rec=contr.sum, sexe=contr.sum), data=data) 
+
+shapiro.test(residuals(mod_clustlog)) #tjs pas
+bartlett.test(residuals(mod_clustlog)~data$clust_sexe) #bon
+
+Anova(mod_clust, type=3)
+Anova(mod_clustlog, type=3) #interaction non-signif dans les deux cas.
+
+### csp*sexe ## ---
+
+csp <- summarySE(data,measurevar="Q6",groupvars=c("csp_rec","sexe"))
+p_csp <- ggplot(csp) +
+  aes(x = csp_rec, y = Q6, colour = sexe, fill = sexe, group = sexe) +
+  geom_errorbar(aes(ymin=Q6-ci, ymax=Q6+ci), width=.1, position=p) +
+  geom_line(position=p, size=1) +
+  geom_point(position=p, size=1)+
+  theme_minimal()
+p_csp + scale_y_continuous(name="Q_générale (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+data$csp_sexe <- interaction(data$csp_rec, data$sexe, sep="_")
+mod_csp <- lm(Q6~csp_rec * sexe, contrasts=list(csp_rec=contr.sum, sexe=contr.sum), data=data) 
+summary(mod_csp)
+par(mfrow=c(1,2))
+plot(mod_csp,1) + plot(mod_csp,2) 
+shapiro.test(residuals(mod_csp)) #pas bon
+
+par(mfrow=c(1,1))
+plot(mod_csp,3) 
+bartlett.test(residuals(mod_csp)~data$csp_sexe) #nope
+
+#Nouvel échec, je tente :
+mod_csplog <- lm(log(Q6+1)~clust_complet_rec * sexe, contrasts=list(clust_complet_rec=contr.sum, sexe=contr.sum), data=data) 
+
+shapiro.test(residuals(mod_csplog)) #tjs pas
+bartlett.test(residuals(mod_csplog)~data$csp_sexe) #bon
+
+Anova(mod_csp, type=3)
+Anova(mod_csp, type=3) #interaction non-signif dans les deux cas.
+
+
+## Quid du musée :####------------------------------------------
+musee <- summarySE(data,measurevar="Q6",groupvars=c("Q12","sexe"))
+ggplot(csp) +
+  aes(x = csp_rec, y = Q6, colour = sexe, fill = sexe, group = sexe) +
+  geom_errorbar(aes(ymin=Q6-ci, ymax=Q6+ci), width=.1, position=p) +
+  geom_line(position=p, size=1) +
+  geom_point(position=p, size=1)+
+  theme_minimal()
+

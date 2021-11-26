@@ -16,9 +16,18 @@ Correspondance de Constance de Salm
     -   [L’évolution dans le temps du genre des auteurs des
         lettres](#lévolution-dans-le-temps-du-genre-des-auteurs-des-lettres)
 -   [Réseaux](#réseaux)
--   [Analyse lexicale](#analyse-lexicale)
+-   [Analyse des sentiments à partir de la première ligne des lettres du corpus](#analyse-des-sentiments-à-partir-de-la-première-ligne-des-lettres-du-corpus)
 
 ## Quelques leçons de la tentative d’OCRisation de la correspondance
+
+Le modèle d'HTR à disposition ne suffit pas à obtenir une sortie texte satisfaisante à partir des documents du corpus sur lequel il n'a pas été entraîné. Cette insuffisance doit être attribuée à la taille restreinte du corpus d'entraînement.
+<img src="Quelques-graphiques_files/htr_inefficace.png" style="display: block; margin: auto;" />
+
+En revanche, la sortie texte est satisfaisante et peut être corrigée avec un module python pour les documents sur lesquels le modèle a été entraîné ou dont les caractéristiques graphologiques sont très proches.
+<img src="Quelques-graphiques_files/htr_efficace.png" style="display: block; margin: auto;" />
+
+À défaut de pouvoir traiter efficacement la totalité du sous-corpus que nous avions défini au début du datathon, nous avons choisi d'enrichir le corpus gold (le corpus d'entraînement du modèle) en créant de nouveaux fichiers xml d'entraînement sur un échantillon aléatoire et plus large. Nous souhaitons que notre échec puisse servir à un futur projet d'océrisation du corpus, en commençant par développer un modèle robuste capable de transcrire toutes les mains des registres de lettre de Constance de Salm.
+
 
 ## Enrichissement de la base de données
 
@@ -114,13 +123,15 @@ Dimension: lieux de création "Ausstellungsort"
 Facette : ligne de temps, auteur
 
 
-## Analyse lexicale
-<p> On a décidé d'utiliser toute les premières phrases des lettres pour l'analyse. Après qu'on a fait la prépraration lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque TextBlob pour déterminer le sentiment de chaque phrase.</p>
+## Analyse des sentiments à partir de la première ligne des lettres du corpus
+On a décidé d'utiliser toutes les premières phrases des lettres pour l'analyse. Après qu'on a fait la préparation
+lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque 
+[Textblob](https://www.kaggle.com/fedi1996/french-sentiment-analysis-using-textblob/notebook) pour déterminer le sentiment de chaque phrase.
 
-<img src="analyse_de_sentiment/documents/resultats_figure.png" style="display: block; margin: auto;"/>
+![Résultats](resultats_figure.png)
 
-<p>Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
+Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
 
-Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.</p>
+Pour permettre une référence, on a aussi fait une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.
 
-<img src="analyse_de_sentiment/documents/resultats_figure_24heures.png" style="display: block; margin: auto;"/>
+![Résultats](resultats_figure_24heures.png)
