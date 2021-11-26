@@ -106,7 +106,7 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 ### Exemple d'application des données enrichies et divisées
 
-Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... et télécharger les information geographique de geodata pour donner la possibilité des plusieurs visualisations.
+Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Python/R... et télécharger les information géographique de geodata pour donner la possibilité des plusieurs visualisations.
 
 1. Importation https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/5.dataviz/lib/CdS_Final_vis.csv vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
@@ -120,7 +120,7 @@ Mise à jours des donnée: On a changé les noms des colones pour simplifier l'a
 
 Dimension: lieux de création "Ausstellungsort", nouveau colonne "Austellungsort_Koordinaten"
 
-Facette : ligne de temps, auteur
+Facette : ligne de temps, auteur, ...
 
 
 ## Analyse des sentiments à partir de la première ligne des lettres du corpus
