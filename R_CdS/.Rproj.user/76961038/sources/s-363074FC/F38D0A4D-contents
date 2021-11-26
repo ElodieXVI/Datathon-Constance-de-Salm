@@ -1,0 +1,430 @@
+# Des comparaisons de moyennes dans tous les sens :####
+library(foreign)
+library(tidyverse)
+library(questionr)
+library(survey)
+library(gtsummary)
+library(readxl)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ") 
+
+###Chargement des données :####
+data <- readRDS(file = "Data/BDD_V5.rds")
+dataw <- svydesign(ids = ~1, data = data, weights = ~ data$pond2)
+
+ESS2014 <- read.spss("Data/ESS7e02_2.sav", to.data.frame = TRUE)
+ESS2014 <- filter(ESS2014, cntry == "France")
+
+names(ESS2014)
+df <- ESS2014[, c(5,311,312, 297,579:580,592,599:601, 91:97,367,383,399, 171:204)]
+View(df)
+names(df)
+
+pop_2018 <- read_excel("Data/base-ic-evol-struct-pop-2018 copie.xlsx")
+pop_2018 <- pop_2018[, c(2,13,80:82)]
+
+####Exploration des deux variables d'intérêt et de celle de l'ESS7 :####
+freq(df$agea)
+freq(df$gndr)
+freq(df$icpdwrk)
+str(df$icpdwrk)
+
+df$agea <- as.numeric(df$agea)
+mean(df$agea, na.rm = T)
+quantile(df$agea, na.rm = T)
+freq(data$Q6)
+freq(data$Q7)
+
+df$noimbro <- as.numeric(df$noimbro)
+
+hist(df$noimbro, breaks = 12)
+hist(data$Q6)
+hist(data$Q7)
+
+ess_age <- filter(df, df$agea >= 18, df$agea <=89)
+
+
+####Distribution des variables d'intérêts####
+plot_ess <- ggplot(df) +
+  geom_histogram(aes( x = noimbro), fill = "sky blue",bins = 100L) +
+  ggtitle("") +
+  ylab("Effectifs") +
+  xlab("Sur 100") +
+  theme_linedraw()
+plot_ess + theme(legend.position="bottom") + scale_x_continuous(name="noimbro (sur 100 personnes)", limits=c(0, 100), breaks = c(0,10,20,30,40,50,60,70,80,90,100))
+
+plot_ess <- ggplot(ess_age) +
+  geom_histogram(aes( x = noimbro), fill = "sky blue",bins = 100L) +
+  ggtitle("") +
+  ylab("Effectifs") +
+  xlab("Sur 100") +
+  theme_linedraw()
+plot_ess + theme(legend.position="bottom") + scale_x_continuous(name="noimbro (sur 100 personnes)", limits=c(0, 100), breaks = c(0,10,20,30,40,50,60,70,80,90,100))
+
+
+g1 <- ggplot(dataw$variables) +
+  geom_histogram(aes( x = Q6, weight = weights(dataw)), fill = "sky blue",bins = 100L) +
+  ggtitle("") +
+  ylab("Effectifs") +
+  xlab("Sur 10") +
+  theme_linedraw()
+
+
+g1 + theme(legend.position="bottom") + scale_x_continuous(name="Q_générale (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+g2 <- ggplot(dataw$variables) +
+  geom_histogram(aes( x = Q7, weight = weights(dataw)), fill = "sky blue",bins = 100L) +
+  ggtitle("") +
+  ylab("Effectifs") +
+  xlab("Q_vie (Sur 10)") +
+  theme_linedraw()
+
+g2 + theme(legend.position="bottom") + scale_x_continuous(name="Q_vie (sur 10 personnes)", limits=c(0, 10), breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+
+data$Q6 <- as.numeric(data$Q6)
+mean(data$Q6, na.rm = T) # 3.7715
+sd(data$Q6) #1.959645
+summary(data$Q6)
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.000   2.000   4.000   3.772   5.000  10.000 
+
+###Comparaison moyenne par age dans data et ESS :####
+
+ggplot(data) +
+  geom_point(aes(x = age, y = Q6), color = "blue", size = 2, alpha = 0.1) +
+  ggtitle("Figure Q6 X age") +
+  xlab("age") +
+  ylab("Sur 10 personnes en France") +
+  theme_minimal()
+cor.test(data$Q6, data$age, method = "pearson")
+
+ggplot(data, aes(x = age, y = Q6)) +
+  geom_point(alpha = 0.2, color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  ggtitle("Figure Q6 X age") +
+  xlab("age") +
+  ylab("Sur 10 personnes en France") +
+  theme_minimal()
+
+ggplot(df, aes(x = agea, y = noimbro)) +
+  geom_point(alpha = 0.2, color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  ggtitle("Figure ESS X age") +
+  xlab("age") +
+  ylab("Sur 100 personnes en France") +
+  theme_minimal()
+
+###Corrélation Q6 et Q7 ####
+#Est-ce que plus les personnes perçoivent beaucoup d'étrangers dans leur entourage, plus ils en perçoivent en France ?
+table(data$Q6, data$Q7)
+
+ggplot(data) +
+  geom_point(aes(x = Q7, y = Q6), color = "blue", size = 2, alpha = 0.1) +
+  ggtitle("Figure Q6 X Q7") +
+  xlab("Sur 10 personnes autour de vous") +
+  ylab("Sur 10 personnes en France") +
+  theme_minimal()
+
+cor.test(data$Q7, data$Q6, method = "pearson") #t = 36.314, df = 1998, p-value < 2.2e-16 
+#0.6034006 0.6562486 intervales 
+#cor 0.6305549 
+
+lm(data$Q6 ~ data$Q7)
+reg <- lm(data$Q6 ~ data$Q7)
+summary(reg)
+confint(reg)
+
+g3 <- ggplot(data, aes(x = Q7, y = Q6)) +
+  geom_point(alpha = 0.2, color = "purple") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  xlab("Q_vie (Sur 10 personnes autour de vous)") +
+  ylab("Q_generale (Sur 10 personnes en France)") +
+  theme_linedraw()
+
+g3 + geom_jitter(color = "purple") + scale_x_continuous(limits=c(0, 10),breaks = c(0,1,2,3,4,5,6,7,8,9, 10))+ scale_y_continuous(limits=c(0, 10),breaks = c(0,1,2,3,4,5,6,7,8,9, 10))
+
+
+###Comparaison des résultats en fonction du territoire ####
+table(data$departement)
+
+#Charger le fichier contenant les recodages :
+source("/Users/elodie/Dropbox/QESS2/Atelier de recherche/Travail_Elodie_Yann/Scripts/Elodie_Recodage.R", local = knitr::knit_global())
+
+dataw <- svydesign(ids = ~1, data = data, weights = ~ data$pond2)
+
+##Tableaux :#
+
+dataw %>%
+  tbl_svysummary(
+    include = c("CODREG"))
+
+data$region_13 <- as.factor(data$region_13)
+dataw %>%
+  tbl_svysummary(
+    include = c("CODREG", "Q6"), by=CODREG, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("CODREG", "Q7"), by=CODREG, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("CODREG", "surestimation_dicho"), by=CODREG)
+svytable(~CODREG + surestimation_dicho, dataw)
+
+
+##Tests avec différents recoupages géo###
+dataw %>%
+  tbl_svysummary(
+    include = c("agglo", "surestimation_dicho"), by=agglo, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("agglo", "Q6"), by=agglo, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("agglo", "Q7"), by=agglo, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("unite_urbaine_d", "Q6"), by=unite_urbaine_d, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+
+dataw %>%
+  tbl_svysummary(
+    include = c("unite_urbaine_d_rec1", "Q6"), by=unite_urbaine_d_rec1, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("FR_3", "Q6"), by=FR_3, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("FR_3", "Q7"), by=FR_3, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("Q12", "Q6"), by=Q12, statistic = c(all_continuous()~"{mean}"))%>% 
+  add_p()
+
+data %>%
+  tbl_summary(
+    include = c("unite_urbaine_rec5", "Q6"), by=unite_urbaine_rec5, statistic = c(all_continuous()~"{mean}")) %>% 
+  add_p()
+
+dataw %>%
+  tbl_svysummary(
+    include = c("unite_urbaine_rec5", "Q6"), by=unite_urbaine_rec5, statistic = c(all_continuous()~"{mean}")) %>% 
+  add_p()
+
+###ANOVA sur moyennes par région ###
+
+library(outliers)
+library(rstatix)
+library(ggpubr)
+##Créer une dataframe pour retirer les NA qui pourraient gêner Anova :
+## Recodage de data$CODREG en data$CODREG_rec
+
+d_aov  <- data[,c(33:34, 96)]
+view(d_aov)
+table(d_aov$Q6, d_aov$CODREG)
+class(d_aov$CODREG)
+
+d_aov$CODREG <- as.factor(d_aov$CODREG)
+#L'analyse portera sur 8950 individus pour cl et 8944 pour no_cl
+val_ab1 <- d_aov %>%
+  group_by(CODREG) %>%
+  identify_outliers(Q6)
+view(val_ab1) #présence de valeurs aberrantes
+
+val_ab2 <- d_aov %>%
+  group_by(CODREG) %>%
+  identify_outliers(Q7)
+view(val_ab2)#présence de valeurs aberrantes
+
+##Visualiser les groupes à analyser :
+ggboxplot(d_aov, x = "CODREG", y = "Q6")
+ggboxplot(d_aov, x = "CODREG", y = "Q6", outlier.shape = NA)
+
+ggboxplot(d_aov, x = "CODREG", y = "Q7")
+ggboxplot(d_aov, x = "CODREG", y = "Q7", outlier.shape = NA)
+
+#Obtenir les moyennes, écarts-type des groupes :
+d_aov %>%
+  group_by(CODREG) %>%
+  get_summary_stats(Q6, type = "mean_sd")
+modelaov  <- lm(Q6 ~ CODREG, data = d_aov)
+ggqqplot(residuals(modelaov)) # se distribue le long de la ligne de ref = suppose normalité des données
+plot(modelaov, 1) #Pas de relations évidentes entre résidus et valeurs calculées = homogénéité des variances
+d_aov %>% levene_test(Q6 ~ CODREG) #Rejeté, réaliser un test ANova de welch.
+
+d_aov %>%
+  group_by(CODREG) %>%
+  get_summary_stats(Q7, type = "mean_sd")
+
+
+modelaov  <- lm(Q7 ~ CODREG, data = d_aov)
+ggqqplot(residuals(modelaov)) # se distribue le long de la ligne de ref = suppose normalité des données
+plot(modelaov, 1) #Pas de relations évidentes entre résidus et valeurs calculées = homogénéité des variances
+d_aov %>% levene_test(Q7 ~ CODREG) #Validé, réaliser un test ANova de welch.
+
+##Réaliser l'Anova : 
+res.aov <- d_aov %>% anova_test(Q6 ~ CODREG)
+res.aov #Il n'existe pas de différences significatives entre les groupes 
+#   Effect DFn  DFd     F     p p<.05   ges
+# 1 CODREG  12 1987 1.505 0.115       0.009
+
+res.aov <- d_aov %>% anova_test(Q7 ~ CODREG)
+res.aov #Il n'existe pas de différences significatives entre les groupes 
+#  Effect DFn  DFd      F        p p<.05   ges
+#1 CODREG  12 1987 11.334 2.58e-22     * 0.064
+
+hsd <- d_aov %>% tukey_hsd(Q6 ~ CODREG)
+hsd
+
+hsd <- d_aov %>% tukey_hsd(Q7 ~ CODREG)
+hsd
+
+
+###ANOVA sur paris vs banlieue ###
+##Créer une dataframe pour retirer les NA qui pourraient gêner Anova :
+## Recodage de data$CODREG en data$CODREG_rec
+
+d_aov  <- data[,c(33:34, 102)]
+view(d_aov)
+table(d_aov$Q6, d_aov$FR_3)
+class(d_aov$FR_3)
+
+d_aov$FR_3 <- as.factor(d_aov$FR_3)
+#L'analyse portera sur 8950 individus pour cl et 8944 pour no_cl
+val_ab1 <- d_aov %>%
+  group_by(FR_3) %>%
+  identify_outliers(Q6)
+view(val_ab1) #présence de valeurs aberrantes
+
+val_ab2 <- d_aov %>%
+  group_by(FR_3) %>%
+  identify_outliers(Q7)
+view(val_ab2)#présence de valeurs aberrantes
+
+##Visualiser les groupes à analyser :
+ggboxplot(d_aov, x = "FR_3", y = "Q6")
+ggboxplot(d_aov, x = "FR_3", y = "Q6", outlier.shape = NA)
+
+ggboxplot(d_aov, x = "FR_3", y = "Q7")
+ggboxplot(d_aov, x = "FR_3", y = "Q7", outlier.shape = NA)
+
+#Obtenir les moyennes, écarts-type des groupes :
+d_aov %>%
+  group_by(FR_3) %>%
+  get_summary_stats(Q6, type = "mean_sd")
+modelaov  <- lm(Q6 ~ FR_3, data = d_aov)
+ggqqplot(residuals(modelaov)) # se distribue le long de la ligne de ref = suppose normalité des données
+plot(modelaov, 1) #Pas de relations évidentes entre résidus et valeurs calculées = homogénéité des variances
+d_aov %>% levene_test(Q6 ~ FR_3) #Rejeté, réaliser un test ANova de welch.
+
+d_aov %>%
+  group_by(FR_3) %>%
+  get_summary_stats(Q7, type = "mean_sd")
+
+
+modelaov  <- lm(Q7 ~ FR_3, data = d_aov)
+ggqqplot(residuals(modelaov)) # se distribue le long de la ligne de ref = suppose normalité des données
+plot(modelaov, 1) #Pas de relations évidentes entre résidus et valeurs calculées = homogénéité des variances
+d_aov %>% levene_test(Q7 ~ FR_3) #Validé, réaliser un test ANova de welch.
+
+##Réaliser l'Anova : 
+res.aov <- d_aov %>% anova_test(Q6 ~ FR_3)
+res.aov #Il n'existe pas de différences significatives entre les groupes 
+#   Effect DFn  DFd     F     p p<.05   ges
+#1   FR_3   2 1997 5.722 0.003     * 0.006
+
+res.aov <- d_aov %>% anova_test(Q7 ~ FR_3)
+res.aov #Il n'existe pas de différences significatives entre les groupes 
+#    Effect DFn  DFd      F        p p<.05   ges
+#1   FR_3   2 1997 39.507 1.49e-17     * 0.038
+
+hsd <- d_aov %>% tukey_hsd(Q6 ~ FR_3)
+hsd
+
+hsd <- d_aov %>% tukey_hsd(Q7 ~ FR_3)
+hsd
+
+###Comparaison avec population étrangère et Q7 ####
+
+#Extraction des sommes des populations 2018
+
+pop_2018_reg <- pop_2018 %>% 
+  group_by(REG) %>%
+  mutate(P18_POP_REG = sum(P18_POP),
+         P18_POP_FR_REG = sum(P18_POP_FR),
+         P18_POP_IMM_REG = sum(P18_POP_IMM)) %>% 
+  distinct(P18_POP_FR_REG, .keep_all = TRUE)
+
+pop_2018_reg <- pop_2018_reg[-17,]
+pop_2018_reg <- pop_2018_reg[-16,]
+pop_2018_reg <- pop_2018_reg[-15,]
+pop_2018_reg <- pop_2018_reg[-14,]
+
+pop_2018_reg <- pop_2018_reg[,-4]
+pop_2018_reg <- pop_2018_reg[,-3]
+pop_2018_reg <- pop_2018_reg[,-2]
+
+#Maintenant que base propre de popu, on calcule moyenne Q7 et on ajoute à la base :
+
+pop_2018_reg <- pop_2018_reg %>% 
+  group_by(REG) %>%
+  mutate(pct_imm = (P18_POP_IMM_REG/P18_POP_REG)*100,
+         pct_fr = (P18_POP_FR_REG/P18_POP_REG)*100)
+
+data2 <- data %>% 
+  group_by(CODREG) %>%
+  mutate(Q7_mean = mean(Q7, na.rm = TRUE),
+         Q6_mean = mean(Q6, na.rm = TRUE)) %>% 
+  distinct(Q6_mean, Q7_mean, keep_all = TRUE) %>% 
+  select(CODREG, Q6_mean, Q7_mean)
+
+data2$CODREG <- as.character(data2$CODREG)
+data2$CODREG <-  as.numeric(data2$CODREG)
+pop_2018_reg$REG <- as.numeric(pop_2018_reg$REG)
+
+pop_2018_reg <- merge(pop_2018_reg, data2, by= 1)
+
+#Enfin, tableau mettant en lien moyenne de Q7 et pct étranger par région :
+
+table(data$CODREG, data$region_13)
+dataw %>%
+  tbl_svysummary(
+    include = c("dichofr", "Q7", "CODREG"), by = CODREG,
+    statistic = list(all_continuous() ~ "{mean}", 
+                     all_categorical()~"{p}%")) %>% 
+  add_p()
+
+pop_2018_reg %>%
+  tbl_summary(
+    include = c("REG", "Q7_mean", "pct_etr"), by = REG,
+    statistic = list(all_continuous() ~ "{mean}", 
+                     all_categorical()~"{p}"))
+
+pop_2018_reg %>%
+  tbl_summary(
+    include = c("REG", "Q7_mean", "pct_imm"), by = REG,
+    statistic = list(all_continuous() ~ "{mean}", 
+                     all_categorical()~"{p}"))
+
+pop_2018_reg %>%
+  tbl_summary(
+    include = c("REG", "Q6_mean", "Q7_mean", "pct_etr"), by = REG,
+    statistic = list(all_continuous() ~ "{mean}", 
+                     all_categorical()~"{p}")) 
+
