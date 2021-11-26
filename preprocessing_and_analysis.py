@@ -9,7 +9,7 @@ from textblob_fr import PatternTagger, PatternAnalyzer
 import pandas as pd
 
 
-# Créer un Blobber pour faire de l'analyse sentiment avec nos données
+# Créer un Blobber pour faire l'analyse sentiment avec nos données
 tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
 
 # Pour créer un pipeline de préparation linguistique
@@ -24,13 +24,15 @@ pos_list = ["NOUN", "ADJ", "ADV"]
 
 # Ajouter et analyser les documents / ajouter les résultats au DataFrame
 results_complet = {}
-for file in glob.glob('./test/documents/*'):
-    print('Working on:', os.path.basename(file))
+cds_dataframe = pd.read_csv('./Donnees_Lettres/20211116_Constance_de_Salm_Korrespondenz_Inventar_Briefe.csv',
+                            usecols=['FuD-Key', 'Anfang des Briefes'], sep=';')
+for i, value in cds_dataframe.iterrows():
+    sentence = value['Anfang des Briefes']
+    print('Working on:', value['FuD-Key'])
 
-    text_simple = open(file, 'r').read()
     # text_simple = re.sub(r'(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)', ' ', text_simple) # Pour
     # effacer les liens
-    text_simple = re.sub(r'\W+', ' ', text_simple)
+    text_simple = re.sub(r'\W+', ' ', sentence)
     doc_prep = nlp(text_simple)
     # Il faut ajouter seulement des lemmas qui sont assez longs, qui n'apparaissent pas dans la liste de stopwords
     # et dont le Part of Speech tag doit être un nom, un verbe ou un adjective
@@ -47,9 +49,12 @@ for file in glob.glob('./test/documents/*'):
         result_sentiment = 'positif'
     elif tb(preprocessed).sentiment[0] < 0.0:
         result_sentiment = 'négatif'
+    else:
+        result_sentiment = 'neutral'
 
-    results_complet[os.path.basename(file)] = result_sentiment
+    results_complet[value['FuD-Key']] = result_sentiment
 
     df = pd.DataFrame.from_dict(results_complet, orient='index', columns=['résultat'])
     df.index.name = 'fichier'
-    print(df.head())
+    df.to_csv('./test/result_sentiment_analyse.csv')
+
