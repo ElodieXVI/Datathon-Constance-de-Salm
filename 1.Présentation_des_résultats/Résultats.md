@@ -84,4 +84,34 @@ femmes restent majoritaire en tant qu’autrices des lettres.
 
 ## Réseaux
 
+1. Sondage
+
+Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractérise cette partie du corps ?
+
+Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
+
+Timeline (Palladio). Période intéressante, deuxième mariage, carriere:
+![Timeline](timeline%20corpus%20séléctionné.PNG)
+
+Qui fait partie du réseau au plus fort de l'activité, c'est principalement le frère et les avocats (Palladio):
+![reseau](reseau%20corpus%20sélectionné%20-%20focalisation%20temporelle%20en%20fonction%20de%20la%20quantité%20-%20resultat%20principalement%20frère%20et%20avocat.PNG)
+On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpus sélectionné qu'il s'agit principalement de conflits de Constance de Salm avec la famille Pipelet (son premier mariage) pour des questions d'héritage.
+
+2. Exemple d'application des données enrichies et divisées
+
+1. Importation vers Palladio](http://hdlab.stanford.edu/palladio/)
+
+2. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
+
+        Filtré par timeline, dimension "Datierung"
+
+        Et avec des facettes :  Main, sexe, mot-clé "Schlagwort", lieu "Ausstellungsort"
+
+3. Carte
+
+Dimension: lieux de création "Ausstellungsort"
+
+Facette : ligne de temps, auteur
+
+
 ## Analyse lexicale
