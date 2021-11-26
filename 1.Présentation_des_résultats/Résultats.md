@@ -20,11 +20,22 @@ Correspondance de Constance de Salm
 
 ## Quelques leçons de la tentative d’OCRisation de la correspondance
 
+Le modèle d'HTR à disposition ne suffit pas à obtenir une sortie texte satisfaisante à partir des documents du corpus sur lequel il n'a pas été entraîné. Cette insuffisance doit être attribuée à la taille restreinte du corpus d'entraînement.
+<img src="Quelques-graphiques_files/htr_inefficace.png" style="display: block; margin: auto;" />
+
+En revanche, la sortie texte est satisfaisante et peut être corrigée avec un module python pour les documents sur lesquels le modèle a été entraîné ou dont les caractéristiques graphologiques sont très proches.
+<img src="Quelques-graphiques_files/htr_efficace.png" style="display: block; margin: auto;" />
+
+À défaut de pouvoir traiter efficacement la totalité du sous-corpus que nous avions défini au début du datathon, nous avons choisi d'enrichir le corpus gold (le corpus d'entraînement du modèle) en créant de nouveaux fichiers xml d'entraînement sur un échantillon aléatoire et plus large. 
+
+
 ## Enrichissement de la base de données
 
-<p style="text-align:justify;">
-Suite à l'échece de l'OCRisation via Kraken et eScriptorium, nous avons changé le critère de réduction de notre corpus de lettres. À l'origine, nous nous étions concentré·es sur une rédactrice (surnomée main1) qui était celle qui a été le mieux identifiée jusqu'à présent, mais dans ce nouveau corpus nous avons pris les quatres rédactrices différentes identifiées. Nous obtenons ainsi 1 466 lettres. Afin de rendre la base de données plus à exploiter, nous avons aussi créé des variables de genre pour les auteurs des lettres et leurs destinataires. Il existe aussi une base de donnée avec les thématiques des lettres recodées dans leur variable correspondante, cette base de données est à retrouver dans le dossier "4.R_enrichissement de la base_analyse" avec le fichier CSV : "CdS_enrichi_complet.csv". Nous présentons ci-dessous les premières lignes des variables ajoutées issues du fichier CSV "CdS_main_genre_2.csv" (présente dans le dossier 4), à l'exception de celles sur les thématiques.
-</p\>
+&lt;p style=“text-align:justify;”&gt;Suite à l’échece de l’OCRisation
+via Kraken et eScriptorium, nous avons changé le critère de réduction de
+notre corpus de lettres. À l’origine, nous nous étions concentré·es sur
+
+&lt;/p&gt;
 
 |  id | main\_num | Verfasser                                                                | Verfasser\_1genre | Verfasser\_2genre | Empfänger                                                                        | Empfänger1genre | Datierung..JJJJ.MM.TT. | Schlagwörter                                                                                                   |
 |----:|:----------|:-------------------------------------------------------------------------|:------------------|:------------------|:---------------------------------------------------------------------------------|:----------------|:-----------------------|:---------------------------------------------------------------------------------------------------------------|
@@ -113,14 +124,12 @@ Facette : ligne de temps, auteur
 
 
 ## Analyse lexicale
-On a décidé d'utiliser toute les premières phrases des lettres pour l'analyse. Après qu'on a fait la prépraration
-lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque 
-[Textblob](https://www.kaggle.com/fedi1996/french-sentiment-analysis-using-textblob/notebook) pour déterminer le sentiment de chaque phrase.
+<p> On a décidé d'utiliser toute les premières phrases des lettres pour l'analyse. Après qu'on a fait la prépraration lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque TextBlob pour déterminer le sentiment de chaque phrase.</p>
 
-![Résultats](resultats_figure.png)
+<img src="analyse_de_sentiment/documents/resultats_figure.png" style="display: block; margin: auto;"/>
 
-Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
+<p>Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
 
-Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.
+Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.</p>
 
-![Résultats](resultats_figure_24heures.png)
+<img src="analyse_de_sentiment/documents/resultats_figure_24heures.png" style="display: block; margin: auto;"/>
