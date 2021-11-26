@@ -73,13 +73,22 @@ masculins, les autres mains ont en majorité des autrices.
 
 <img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
+### L’évolution dans le temps du genre des auteurs des lettres
+
+<p style="text-align:justify;">
+Dans les pics de correspondance de Constance de Salm, on voit que les
+femmes restent majoritaire en tant qu’autrices des lettres.
+</p>
+
+<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+
 ## Réseaux
 
 ### Sondage
 
 Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractérise cette partie du corps ?
 
-Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/2.Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
+Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
 
 Timeline ([Palladio](http://hdlab.stanford.edu/palladio/)). Période intéressante, deuxième mariage, carriere:
 ![Timeline](timeline%20corpus%20séléctionné.PNG)
@@ -106,3 +115,12 @@ Facette : ligne de temps, auteur
 
 
 ## Analyse lexicale
+<p> On a décidé d'utiliser toute les premières phrases des lettres pour l'analyse. Après qu'on a fait la prépraration lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque TextBlob pour déterminer le sentiment de chaque phrase.</p>
+
+<img src="analyse_de_sentiment/documents/resultats_figure.png" style="display: block; margin: auto;"/>
+
+<p>Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
+
+Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.</p>
+
+<img src="analyse_de_sentiment/documents/resultats_figure_24heures.png" style="display: block; margin: auto;"/>
