@@ -79,7 +79,7 @@ masculins, les autres mains ont en majorité des autrices.
 
 Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractérise cette partie du corps ?
 
-Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
+Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/2.Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
 
 Timeline ([Palladio](http://hdlab.stanford.edu/palladio/)). Période intéressante, deuxième mariage, carriere:
 ![Timeline](timeline%20corpus%20séléctionné.PNG)
