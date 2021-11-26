@@ -1,9 +1,7 @@
-# DatathonDFKIHA-sujet-sur-Constance-de-Salm
+# Datathon : Projet sur la correspondance de Constance de Salm (1767-1845)
+Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire avec l'aide de Hippolyte Souvay
 
 ![image](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
-
-## Datathon : Projet sur la correspondance de Constance de Salm (1767-1845)
-Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire avec l'aide de Hippolyte Souvay
 
 ### Présentation du projet
 
