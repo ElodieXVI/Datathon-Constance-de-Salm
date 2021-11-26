@@ -1,5 +1,7 @@
 Correspondance de Constance de Salm
 ================
+Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire avec l'aide de Hippolyte Souvay
+
 26 novembre 2021
 
 -   [Quelques leçons de la tentative d’OCRisation de la
@@ -31,11 +33,7 @@ En revanche, la sortie texte est satisfaisante et peut être corrigée avec un m
 
 ## Enrichissement de la base de données
 
-&lt;p style=“text-align:justify;”&gt;Suite à l’échece de l’OCRisation
-via Kraken et eScriptorium, nous avons changé le critère de réduction de
-notre corpus de lettres. À l’origine, nous nous étions concentré·es sur
-
-&lt;/p&gt;
+Suite à l'échec de l'OCRisation via Kraken et eScriptorium, nous avons changé le critère de réduction de notre corpus de lettres. À l'origine, nous nous étions concentré·es sur une rédactrice (surnomée main1) qui était celle qui a été le mieux identifiée jusqu'à présent, mais dans ce nouveau corpus nous avons pris les quatres rédactrices différentes identifiées. Nous obtenons ainsi 1 466 lettres. Afin de rendre la base de données plus à exploiter, nous avons aussi créé des variables de genre pour les auteurs des lettres et leurs destinataires. Il existe aussi une base de donnée avec les thématiques des lettres recodées dans leur variable correspondante, cette base de données est à retrouver dans le dossier "4.R_enrichissement de la base_analyse" avec le fichier CSV : "CdS_enrichi_complet.csv". Nous présentons ci-dessous les premières lignes des variables ajoutées issues du fichier CSV "CdS_main_genre_2.csv" (présente dans le dossier 4), à l'exception de celles sur les thématiques. La base de données finale réutilisables s'appelle "cds_final_vis.csv".
 
 |  id | main\_num | Verfasser                                                                | Verfasser\_1genre | Verfasser\_2genre | Empfänger                                                                        | Empfänger1genre | Datierung..JJJJ.MM.TT. | Schlagwörter                                                                                                   |
 |----:|:----------|:-------------------------------------------------------------------------|:------------------|:------------------|:---------------------------------------------------------------------------------|:----------------|:-----------------------|:---------------------------------------------------------------------------------------------------------------|
@@ -108,7 +106,9 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 ### Exemple d'application des données enrichies et divisées
 
-1. Importation vers [Palladio](http://hdlab.stanford.edu/palladio/)
+Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Python/R... et télécharger les information géographique de geodata pour donner la possibilité des plusieurs visualisations.
+
+1. Importation https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/5.dataviz/lib/CdS_Final_vis.csv vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
 2. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
 
@@ -118,9 +118,9 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 3. Carte
 
-Dimension: lieux de création "Ausstellungsort"
+Dimension: lieux de création "Ausstellungsort", nouveau colonne "Austellungsort_Koordinaten"
 
-Facette : ligne de temps, auteur
+Facette : ligne de temps, auteur, ...
 
 
 ## Analyse des sentiments à partir de la première ligne des lettres du corpus

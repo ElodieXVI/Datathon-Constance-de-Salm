@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
 
 ## Datathon : Projet sur la correspondance de Constance de Salm (1767-1845)
-Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber avec l'aide de Hippolyte Souvay
+Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire avec l'aide de Hippolyte Souvay
 
 ### Présentation du projet
 
@@ -21,6 +21,8 @@ Le projet a néanmoins permis :
   - de proposer une analyse des réseaux de la correspondance : notamment de l'évolution du réseau des auteurs et des destinataires dans le temps, de regarder les thèmes des lettres et lieux de rédaction des lettres en relation avec les auteurs des lettres.
   - de proposer une analyse textuelle de la première ligne des lettres du corpus et notamment une analyse des sentiments. 
   - et enfin, de télécharger les coordonnées géographiques avec la bibliothèque geocode de Python qui ont été sauvegardés dans une base de données.
+
+[Présentation des résultats](https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/1.Pr%C3%A9sentation_des_r%C3%A9sultats/R%C3%A9sultats.md)
 
 Vous pouvez retrouver Constance de Salm sur Twitter : https://twitter.com/ConstanceSalm
 
@@ -43,5 +45,7 @@ The project has nevertheless allowed :
   - to propose an analysis of the networks of the correspondence
   - propose a textual analysis of the first line of the letters of the corpus
   - and finally, to create a map from the partially recovered geodata.
+
+[Presentation of results](https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/1.Pr%C3%A9sentation_des_r%C3%A9sultats/R%C3%A9sultats.md)
 
 You can find Constance de Salm on Twitter: https://twitter.com/ConstanceSalm 
