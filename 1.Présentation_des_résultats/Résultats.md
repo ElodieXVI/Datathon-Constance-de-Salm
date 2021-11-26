@@ -108,7 +108,7 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... et télécharger les information geographique de geodata pour donner la possibilité des plusieurs visualisations.
 
-1. Importation vers [Palladio](http://hdlab.stanford.edu/palladio/)
+1. Importation https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/5.dataviz/lib/CdS_Final_vis.csv vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
 2. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
 
@@ -118,7 +118,7 @@ Mise à jours des donnée: On a changé les noms des colones pour simplifier l'a
 
 3. Carte
 
-Dimension: lieux de création "Ausstellungsort"
+Dimension: lieux de création "Ausstellungsort", nouveau colonne "Austellungsort_Koordinaten"
 
 Facette : ligne de temps, auteur
 
