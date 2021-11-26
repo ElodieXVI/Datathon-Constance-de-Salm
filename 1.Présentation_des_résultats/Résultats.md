@@ -16,8 +16,6 @@ Correspondance de Constance de Salm
     -   [L’évolution dans le temps du genre des auteurs des
         lettres](#lévolution-dans-le-temps-du-genre-des-auteurs-des-lettres)
 -   [Réseaux](#réseaux)
-    -   [Sondage](#Sondage)
-    -   [Exemple d'application des données enrichies et divisées](#Exemple_dapplication_des_données_enrichies_et_divisées)      
 -   [Analyse lexicale](#analyse-lexicale)
 
 ## Quelques leçons de la tentative d’OCRisation de la correspondance
@@ -28,12 +26,16 @@ Le modèle d'HTR à disposition ne suffit pas à obtenir une sortie texte satisf
 En revanche, la sortie texte est satisfaisante et peut être corrigée avec un module python pour les documents sur lesquels le modèle a été entraîné ou dont les caractéristiques graphologiques sont très proches.
 <img src="Quelques-graphiques_files/htr_efficace.png" style="display: block; margin: auto;" />
 
-À défaut de pouvoir traiter efficacement la totalité du sous-corpus que nous avions défini au début du datathon, nous avons choisi d'enrichir le corpus gold (le corpus d'entraînement du modèle) en créant de nouveaux fichiers xml d'entraînement sur un échantillon aléatoire et plus large. 
+À défaut de pouvoir traiter efficacement la totalité du sous-corpus que nous avions défini au début du datathon, nous avons choisi d'enrichir le corpus gold (le corpus d'entraînement du modèle) en créant de nouveaux fichiers xml d'entraînement sur un échantillon aléatoire et plus large. Nous souhaitons que notre échec puisse servir à un futur projet d'océrisation du corpus, en commençant par développer un modèle robuste capable de transcrire toutes les mains des registres de lettre de Constance de Salm.
 
 
 ## Enrichissement de la base de données
 
-Suite à l'échece de l'OCRisation via Kraken et eScriptorium, nous avons changé le critère de réduction de notre corpus de lettres. À l'origine, nous nous étions concentré·es sur une rédactrice (surnomée main1) qui était celle qui a été le mieux identifiée jusqu'à présent, mais dans ce nouveau corpus nous avons pris les quatres rédactrices différentes identifiées. Nous obtenons ainsi 1 466 lettres. Afin de rendre la base de données plus à exploiter, nous avons aussi créé des variables de genre pour les auteurs des lettres et leurs destinataires. Il existe aussi une base de donnée avec les thématiques des lettres recodées dans leur variable correspondante, cette base de données est à retrouver dans le dossier "4.R_enrichissement de la base_analyse" avec le fichier CSV : "CdS_enrichi_complet.csv". Nous présentons ci-dessous les premières lignes des variables ajoutées issues du fichier CSV "CdS_main_genre_2.csv" (présente dans le dossier 4), à l'exception de celles sur les thématiques.
+&lt;p style=“text-align:justify;”&gt;Suite à l’échece de l’OCRisation
+via Kraken et eScriptorium, nous avons changé le critère de réduction de
+notre corpus de lettres. À l’origine, nous nous étions concentré·es sur
+
+&lt;/p&gt;
 
 |  id | main\_num | Verfasser                                                                | Verfasser\_1genre | Verfasser\_2genre | Empfänger                                                                        | Empfänger1genre | Datierung..JJJJ.MM.TT. | Schlagwörter                                                                                                   |
 |----:|:----------|:-------------------------------------------------------------------------|:------------------|:------------------|:---------------------------------------------------------------------------------|:----------------|:-----------------------|:---------------------------------------------------------------------------------------------------------------|
