@@ -22,9 +22,7 @@ Le projet a néanmoins permis :
   - de proposer une analyse textuelle de la première ligne des lettres du corpus et notamment une analyse des sentiments. 
   - et enfin, de télécharger les coordonnées géographiques avec la bibliothèque geocode de Python qui ont été sauvegardés dans une base de données.
 
-Vous pouvez retrouver Constance de Salm sur Twitter : https://twitter.com/ConstanceSalm 
-
-### Notice de ce Github
+Vous pouvez retrouver Constance de Salm sur Twitter : https://twitter.com/ConstanceSalm
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Datathon : Project on the correspondence of Constance de Salm (1767-1845)
