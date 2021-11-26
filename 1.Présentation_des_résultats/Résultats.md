@@ -108,13 +108,15 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 1. Importation vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
-2. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
+2. Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... 
+
+3. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
 
     Filtré par timeline, dimension "Datierung"
 
     Et avec des facettes :  Main, sexe, mot-clé "Schlagwort", lieu "Ausstellungsort"
 
-3. Carte
+4. Carte
 
 Dimension: lieux de création "Ausstellungsort"
 
