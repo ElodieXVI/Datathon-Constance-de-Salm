@@ -90,7 +90,7 @@ Nous avons choisi une main pour réduire notre corpus. Qu'est-ce qui caractéris
 
 Data: https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/Donnees_Lettres/Constance_de_Salm_Special_lettres.csv
 
-Timeline ([Palladio](http://hdlab.stanford.edu/palladio/)). Période intéressante, deuxième mariage, carriere:
+Timeline ([Palladio](http://hdlab.stanford.edu/palladio/)). Période intéressante, deuxième mariage, carrière:
 ![Timeline](timeline%20corpus%20séléctionné.PNG)
 
 Qui fait partie du réseau au plus fort de l'activité, c'est principalement le frère et les avocats ([Palladio](http://hdlab.stanford.edu/palladio/)):
