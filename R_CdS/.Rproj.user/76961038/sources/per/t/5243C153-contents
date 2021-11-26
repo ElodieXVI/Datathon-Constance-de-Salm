@@ -1,0 +1,83 @@
+## ----appel Rtemis-----------------------
+library(R.temis)
+
+
+## ----Import-------------------------------------------------------------------------
+corpus <- import_corpus("EBM_FRABELPORTRUSS2.csv", format="csv", textcolumn = 13,language="en")
+#corpus <- import_corpus("EBM_Iram_BELFRAPORTRUS.txt", format="alceste",language="en")
+
+corpus
+inspect (corpus[[1]])
+inspect (corpus[[10]])
+
+
+## ----DTM-Construction du talbleau Lexical---------------------------------------------------------------------------
+dtmsmo <-build_dtm(corpus,remove_stopwords = T)
+inspect(dtmsmo)
+
+
+## ----Lexique--------------------------------------------------------
+dictionary(dtmsmo)
+
+
+## ----lecture dico-------------------------------------------------------------------
+dic <-dictionary(dtmsmo)
+#head(dic)
+View(dic)
+
+## ----Frequence des mots-------------------------------------------------------------
+frequent_terms(dtmsmo)
+
+
+## ----cloud--------------------------------------------------------------------------
+cloud<-word_cloud(dtmsmo, color="red", n=60, min.freq=10)
+
+
+## ----concord------------------------------------------------------------------------
+concordances(corpus,dtmsmo,"mother")
+concordances(corpus,dtmsmo,"france")
+
+## ----Table des métadonnées------------------------------------------------------------------------
+#View(meta(corpus))
+
+#Attention a changer le nom des variables
+
+## ----Bilan--------------------------------------------------------------------------
+lexical_summary(dtmsmo, corpus,"G_State", unit="global" )
+
+
+## ----M_specif-----------------------------------------------------------------------
+#specific_terms(dtmsmo,meta(corpus)$A1_Gender)
+#specific_terms(dtmsmo,meta(corpus)$G_Study)
+#specific_terms(dtmsmo,meta(corpus)$A10_LevInc)
+
+specific_terms(dtmsmo,meta(corpus)$Nblang)
+#specific_terms(dtmsmo,meta(corpus)$Nb)
+
+#specific_terms(dtmsmo,meta(corpus)$PaysVis)
+#specific_terms(dtmsmo,meta(corpus)$G_State)
+
+
+## ----R_specif-----------------------------------------------------------------------
+characteristic_docs(corpus,dtmsmo,meta(corpus)$Nblang)
+
+
+## ----tri----------------------------------------------------------------------------
+library (questionr)
+tab1 <- freq(meta(corpus)$G_Study) 
+tab1
+tab2 <- freq(meta(corpus)$A1_Gender) 
+tab2
+tab3 <- freq(meta(corpus)$G_State) 
+tab3
+tab4 <- freq(meta(corpus)$PaysVis) 
+tab4
+
+
+## ----AFC sur Tableau Lexical Agrégé--------------------------------
+resTLA<-corpus_ca(corpus,dtmsmo, variables =c("G_State","A1_Gender","G_Study","A10_LevInc","PaysVis", "Nblang"),sparsity=0.99)
+explor(resTLA)
+
+## ----sscorpus-----------------------------------------------------------------------
+CorpusFR <- corpus[meta(corpus, "G_State") == "FRA"] 
+
