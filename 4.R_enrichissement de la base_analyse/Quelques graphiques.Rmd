@@ -88,6 +88,15 @@ p + theme(plot.title = element_text(face = "bold"))
 ### La longueur des lettres en fonction des rédacteurs de Constance de Salm
 ```{r, eval=TRUE, echo=FALSE, warning=FALSE, fig.align="center"}
 
+CdS_long <- summarySE(data,measurevar="Q6",groupvars=c("Q12","sexe"))
+ggplot(csp) +
+  aes(x = csp_rec, y = Q6, colour = sexe, fill = sexe, group = sexe) +
+  geom_errorbar(aes(ymin=Q6-ci, ymax=Q6+ci), width=.1, position=p) +
+  geom_line(position=p, size=1) +
+  geom_point(position=p, size=1)+
+  theme_minimal()
+
+
 
 p <- ggplot(CdS) +
   aes(x = Datierung..JJJJ.MM.TT., fill = Verfasser_1genre) +
