@@ -8,6 +8,8 @@ from textblob import Blobber
 from textblob_fr import PatternTagger, PatternAnalyzer
 import pandas as pd
 
+# Chemins:
+path_cds_csv = '../Donnees_Lettres/20211116_Constance_de_Salm_Korrespondenz_Inventar_Briefe.csv'
 
 # Créer un Blobber pour faire l'analyse sentiment avec nos données
 tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
@@ -24,7 +26,7 @@ pos_list = ["NOUN", "ADJ", "ADV"]
 
 # Ajouter et analyser les documents / ajouter les résultats au DataFrame
 results_complet = {}
-cds_dataframe = pd.read_csv('../Donnees_Lettres/20211116_Constance_de_Salm_Korrespondenz_Inventar_Briefe.csv',
+cds_dataframe = pd.read_csv(path_cds_csv,
                             usecols=['FuD-Key', 'Anfang des Briefes'], sep=';')
 for i, value in cds_dataframe.iterrows():
     sentence = value['Anfang des Briefes']
