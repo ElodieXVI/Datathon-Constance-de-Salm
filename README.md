@@ -3,6 +3,7 @@
 ![image](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
 
 ## Datathon : Projet sur la correspondance de Constance de Salm (1767-1845)
+Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber avec l'aide de Hippolyte Souvay
 
 Au cours du datathon organisé par l’IHA et le DFK Paris portant sur l’utilisation créative des données de recherche des deux institutions, nous avons choisi de travailler sur la correspondance de Constance de Salm dont un projet du DHI dresse l’inventaire et propose la numérisation de deux collections liées à la correspondance de Constance de Salm. Il s’agit d’une part du fonds « Salm » de la « Société des Amis du Vieux Toulon et de sa Région » et d’autre part de la collection « Constance de Salm » des archives du « Schloss Dyck » (membre de la « Vereinigte Adelsarchive im Rheinland e.V. »). Constance de Salm n’était pas célèbre que pour son salon parisien, elle entretenait aussi une correspondance régulière avec des intellectuels, des poètes, des artistes, des journalistes et des membres de la noblesse de son époque.
 
@@ -15,13 +16,14 @@ Constance de Salm employait différentes mains pour recoppier les lettres de sa 
 Le projet a néanmoins permis :
   - d'enrichir la base de données réduite aux quatre rédactrices identifiées et qui avait été remplies par le DHI avec : le genre des auteurs des lettres et de leurs destinataires, une variable identifiant les différentes rédactrices des lettres, et un ensemble de variables sur les thématiques abordées dans chaque lettre.
   - d'analyser l'emploi des rédactrices par Constance de Salm : par dates des lettres, thématiques et genre des auteurs et destinataires.
-  - proposer une analyse des réseaux de la correspondance.
-  - proposer une analyse textuelle de la première ligne des lettres du corpus et notamment une analyse des sentiments.
-  - et enfin, de réaliser une carte à partir des geodata partiellement récupérées.
+  - de proposer une analyse des réseaux de la correspondance : notamment de l'évolution du réseau des auteurs et des destinataires dans le temps, de regarder les thèmes des lettres et lieux de rédaction des lettres en relation avec les auteurs des lettres.
+  - de proposer une analyse textuelle de la première ligne des lettres du corpus et notamment une analyse des sentiments. 
+  - et enfin, de télécharger les coordonnées géographiques avec la bibliothèque geocode de Python qui ont été sauvegardés dans une base de données.
 
 Vous pouvez retrouver Constance de Salm sur Twitter : https://twitter.com/ConstanceSalm 
 
 ## Datathon : Project on the correspondence of Constance de Salm (1767-1845)
+By Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber with the help of Hippolyte Souvay
 
 During the datathon organized by IHA and DFK Paris on the creative use of research data from both institutions, we chose to work on the correspondence of Constance de Salm. On the one hand, it is the "Salm" collection of the "Société des Amis du Vieux Toulon et de sa Région" and on the other hand, the "Constance de Salm" collection of the "Schloss Dyck" archives (member of the "Vereinigte Adelsarchive im Rheinland e.V."). Constance de Salm was not only famous for her Parisian salon, she also maintained regular correspondence with intellectuals, poets, artists, journalists and members of the nobility of her time.
 
