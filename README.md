@@ -10,10 +10,10 @@ Les fonds proposés par le DHI documentent quelque 11 000 lettres issues de la c
 
 Vous pouvez retrouver le projet du DHI sur cette correspondance à ce lien : https://github.com/dhi-digital-humanities/constance-de-salm
 
-Constance de Salm employait différentes mains pour recoppier les lettres de sa correspondance, rendant difficile la reconnaissance du texte avec un modèle unique sur Kraken. L'un des obstacles majeurs à l'analyse de cette correspondance est que Constance de Salm a employé plusieurs rédactrices (des jeunes filles de maison) afin de recopier les lettres. Quatre rédactrices différentes ont déjà identifiées. Nous avions donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule rédactrice, celle qui aurait recopiée le plus de lettres pour Constance de Salm. Le corpus ainsi réduit proposait un ensemble de 587 lettres datées de 1793 à 1842. Malheureusement en raison de l'hétérogénéité de l'écriture et d'un manque de temps pour mener une meilleure sélection des images des lettres afin de faciliter le travail du modèle de reconnaissance, nous n'avons pu obtenir un texte suffisamment propre pour par la suite réaliser des analyses textuelles dessus. Le projet d'origine étant d'analyser les sentiments dans le corpus de lettres qui aurait ainsi été obtenu.
+Constance de Salm employait différentes mains pour recoppier les lettres de sa correspondance, rendant difficile la reconnaissance du texte avec un modèle unique sur Kraken. L'un des obstacles majeurs à l'analyse de cette correspondance est que Constance de Salm a employé plusieurs rédactrices (des jeunes filles de maison) afin de recopier les lettres. Quatre rédactrices différentes ont déjà identifiées. Nous avions donc choisi pour rendre le projet réalisable de nous concentrer sur les lettres écrites par une seule rédactrice, celle qui aurait recopiée le plus de lettres pour Constance de Salm. Le corpus ainsi réduit proposait un ensemble de 587 lettres datées de 1793 à 1842. Malheureusement en raison de l'hétérogénéité de l'écriture et d'un manque de temps pour mener une meilleure sélection des images des lettres afin de faciliter le travail du modèle de reconnaissance, nous n'avons pu obtenir un texte suffisamment propre pour par la suite réaliser des analyses textuelles dessus. Le projet d'origine étant d'analyser les sentiments dans le corpus de lettres qui aurait ainsi été obtenu. Nous avons finalement choisi de travailler sur un corpus réduit aux quatre rédactrices identifiéees 
 
 Le projet a néanmoins permis :
-  - d'enrichir la base de données réduite aux quatre rédactrices identifiées et qui avait été remplies par le DHI avec : le genre des auteurs des lettres et de leurs destinataires, une variable identifiant les différentes rédactrices des lettres.
+  - d'enrichir la base de données réduite aux quatre rédactrices identifiées et qui avait été remplies par le DHI avec : le genre des auteurs des lettres et de leurs destinataires, une variable identifiant les différentes rédactrices des lettres, et un ensemble de variables sur les thématiques abordées dans chaque lettre.
   - d'analyser l'emploi des rédactrices par Constance de Salm : par dates des lettres, thématiques et genre des auteurs et destinataires.
   - proposer une analyse des réseaux de la correspondance
   - proposer une analyse textuelle de la première ligne des lettres du corpus
@@ -33,7 +33,7 @@ Constance de Salm used different hands to copy the letters in her correspondence
 
 
 The project has nevertheless allowed :
-  - to enrich the database reduced to the four identified writers and which had been filled in by the DHI with: the gender of the authors of the letters and their addressees, a variable identifying the different writers of the letters.
+  - to enrich the database reduced to the four identified writers and which had been filled in by the DHI with: the gender of the authors of the letters and their addressees, a variable identifying the different writers of the letters, and a set of variables on the themes addressed in each letter.
   - to analyze the use of female writers by Constance de Salm: by dates of the letters, themes and gender of the authors and recipients.
   - to propose an analysis of the networks of the correspondence
   - propose a textual analysis of the first line of the letters of the corpus
