@@ -25,12 +25,10 @@ Le projet a néanmoins permis :
 [N’hésitez pas à aller retrouver Constance de Salm sur Twitter.](https://twitter.com/ConstanceSalm)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Datathon-subject-Constance-de-Salm
+# Datathon: Project on the correspondence of Constance of Salm (1767-1845)
+By Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire with the help of Hippolyte Souvay
 
 ![image](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
-
-## Datathon: Project on the correspondence of Constance of Salm (1767-1845)
-By Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire with the help of Hippolyte Souvay
 
 ### Presentation of the project
 
