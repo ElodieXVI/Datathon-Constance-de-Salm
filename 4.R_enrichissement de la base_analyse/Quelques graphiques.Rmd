@@ -14,13 +14,24 @@ library(tidyverse)
 library(questionr)
 library(knitr)
 library(reticulate)
-CdS <- read_delim("CdS_main_genre.csv", 
+CdS <- read_delim("CdS_main_genre_2.csv", 
                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
-CdS <- CdS[, c(37,36,5:6, 38:39,9,12,14,21,22,24,27,29)]
+CdS <- CdS[, c(1, 37,7,38,39,10, 40,13, 30)]
 
 ```
 
-## Enrichissement de la base de données et tentative d'OCRisation de la correspondance
+## Quelques leçons de la tentative d'OCRisation de la correspondance
+
+## Enrichissement de la base de données
+
+\<p style="text-align:justify;"\>Suite à l'échece de l'OCRisation via Kraken et eScriptorium, nous avons changé le critère de réduction de notre corpus de lettres. À l'origine, nous nous étions concentré·es sur
+
+\</p\>
+
+```{r, echo=FALSE, warning=FALSE, fig.align="center"}
+kable(head(CdS))
+
+```
 
 ## Analyse de l'utilisation des rédacteurs par Constance de Salm
 
@@ -74,37 +85,8 @@ p <- ggplot(CdS) +
   labs(fill = "Genre des auteurs :") +
   theme_linedraw()
 p + theme(plot.title = element_text(face = "bold"))
-
 ```
 
-### La première ligne des lettres du corpus de Constance de Salm
+## Réseaux
 
-<p style="text-align:justify;">J'ai réalisé un nuage de mots et regardé les mots employés les plus fréquemment dans la première ligne des lettres du corpus. </p>
-
-```{r, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center"}
-library(R.temis)
-corpus <- import_corpus("CdS_main_genre.csv", format="csv", textcolumn = 22,language="fr")
-dtmsmo <-build_dtm(corpus,remove_stopwords = T)
-dic <-dictionary(dtmsmo)
-cloud<-word_cloud(dtmsmo, color="red", n=60, min.freq=10)
-kable(frequent_terms(dtmsmo))
-```
-
-### La première ligne des lettres de Constance de Salm
-
-<p style="text-align:justify;">J'ai extrait les premières des lettres de Constance de Salm pour visualiser si son nuage de mots est différent de celui du reste du corpus.</p>
-
-```{r, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center"}
-corpus2 <- import_corpus("lettres_juste_cds.csv", format="csv", textcolumn = 11,language="fr")
-dtmsmo2 <-build_dtm(corpus2,remove_stopwords = T)
-dic <-dictionary(dtmsmo2)
-```
-
-```{python}
-use_virtualenv("r-reticulate")
-py_available(TRUE)
-!pip install pandas
-import pandas as pd
-pd.Dataframe((5, 3, 3, 3), columns=["x", "y", "z", "a"])
-
-```
+## Analyse lexicale 

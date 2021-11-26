@@ -1,18 +1,43 @@
 Correspondance de Constance de Salm
 ================
-25 novembre 2021
+26 novembre 2021
 
--   [Constance de Salm et ses différents rédacteurs dans le
-    temps](#constance-de-salm-et-ses-différents-rédacteurs-dans-le-temps)
--   [Le genre des auteurs des lettres en fonction des rédacteurs de
-    Constance de
-    Salm](#le-genre-des-auteurs-des-lettres-en-fonction-des-rédacteurs-de-constance-de-salm)
--   [L’évolution dans le temps du genre des auteurs des
-    lettres](#lévolution-dans-le-temps-du-genre-des-auteurs-des-lettres)
--   [La première ligne des lettres du corpus de Constance de
-    Salm](#la-première-ligne-des-lettres-du-corpus-de-constance-de-salm)
--   [La première ligne des lettres de Constance de
-    Salm](#la-première-ligne-des-lettres-de-constance-de-salm)
+-   [Quelques leçons de la tentative d’OCRisation de la
+    correspondance](#quelques-leçons-de-la-tentative-docrisation-de-la-correspondance)
+-   [Enrichissement de la base de
+    données](#enrichissement-de-la-base-de-données)
+-   [Analyse de l’utilisation des rédacteurs par Constance de
+    Salm](#analyse-de-lutilisation-des-rédacteurs-par-constance-de-salm)
+    -   [Constance de Salm et ses différents rédacteurs dans le
+        temps](#constance-de-salm-et-ses-différents-rédacteurs-dans-le-temps)
+    -   [Le genre des auteurs des lettres en fonction des rédacteurs de
+        Constance de
+        Salm](#le-genre-des-auteurs-des-lettres-en-fonction-des-rédacteurs-de-constance-de-salm)
+    -   [L’évolution dans le temps du genre des auteurs des
+        lettres](#lévolution-dans-le-temps-du-genre-des-auteurs-des-lettres)
+-   [Réseaux](#réseaux)
+-   [Analyse lexicale](#analyse-lexicale)
+
+## Quelques leçons de la tentative d’OCRisation de la correspondance
+
+## Enrichissement de la base de données
+
+&lt;p style=“text-align:justify;”&gt;Suite à l’échece de l’OCRisation
+via Kraken et eScriptorium, nous avons changé le critère de réduction de
+notre corpus de lettres. À l’origine, nous nous étions concentré·es sur
+
+&lt;/p&gt;
+
+|  id | main\_num | Verfasser                                                                | Verfasser\_1genre | Verfasser\_2genre | Empfänger                                                                        | Empfänger1genre | Datierung..JJJJ.MM.TT. | Schlagwörter                                                                                                   |
+|----:|:----------|:-------------------------------------------------------------------------|:------------------|:------------------|:---------------------------------------------------------------------------------|:----------------|:-----------------------|:---------------------------------------------------------------------------------------------------------------|
+|   1 | main1     | Salm, Constance de (CdS)                                                 | Female            | Female            | Pailliet, Jean Baptiste Joseph (Anwalt der CdS in Orléans, um 1829)              | Female          | 1841-11-09             | CdS: Œuvres complètes (1842); Tod/Trauer; CdS: Vierbändige Werkausgabe (1835/1836), 2 Prosa- und 2 Poesiebände |
+|   2 | main1     | Carrion de Nisas, Henri de, baron                                        | Male              | NA                | Salm, Constance de (CdS)                                                         | Female          | 1810-05-22             | CdS: Cantate sur le mariage de Sa Majesté l’Empereur (1810)                                                    |
+|   3 | main1     | Girodet-Trioson, Anne-Louis, eigentl. Girodet de Roussy                  | Female            | NA                | Salm, Constance de (CdS)                                                         | Female          | 1817-05-20             | NA                                                                                                             |
+|   4 | main1     | Salm, Constance de (CdS)                                                 | Female            | Female            | Pailliet, Jean Baptiste Joseph (Anwalt der CdS in Orléans, um 1829)              | Female          | 1829-06-03             | Wirtschaft/Finanzen; Prozess/Gericht                                                                           |
+|   5 | main1     | Marchangy, Louis Antoine François Émilien (Ehekandidat 1812 für Minette) | Male              | NA                | Martini, Jean Paul Égide, eigentl. Johann Paul Ägidius Martin bzw. Schwarzendorf | Female          | NA                     | NA                                                                                                             |
+|   6 | main1     | Dufresnoy, Adélaïde-Gillette, geb. Billet                                | Female            | Female            | Salm, Constance de (CdS)                                                         | Female          | 1811-01-28             | Briefpartner/Werk                                                                                              |
+
+## Analyse de l’utilisation des rédacteurs par Constance de Salm
 
 ### Constance de Salm et ses différents rédacteurs dans le temps
 
@@ -22,7 +47,7 @@ ont été identifiées et l’information ajoutée dans une variable de notre
 base de données, on peut regarder l’évolution dans le temps du recours
 par Constance de Salm à ses différents rédacteurs de lettre. On observe
 ainsi que la main 1 est celle qui rédige sur le temps le plus long la
-correspondance de Constance de Salm depuis 1793 jusque 1840. C’est ce
+correspondance de Constance de Salm depuis 1793 jusque 1842. C’est ce
 rédacteur qui a ainsi sur notre corpus été le rédacteur de presque la
 moitié des lettres 587 d’entre elles, soit 40%. Le deuxième rédacteur le
 plus employé par Constance de Salm avec 412 lettres rédigées est la main
@@ -36,7 +61,7 @@ plus employé par Constance de Salm avec 412 lettres rédigées est la main
 | main3 | 196 | 13.4 | 13.4 |
 | main4 | 412 | 28.1 | 28.1 |
 
-<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ### Le genre des auteurs des lettres en fonction des rédacteurs de Constance de Salm
 
@@ -46,7 +71,7 @@ différences intéressantes. Tandis que la main 1 a une majorité d’auteurs
 masculins, les autres mains ont en majorité des autrices.
 </p>
 
-<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 ### L’évolution dans le temps du genre des auteurs des lettres
 
@@ -55,49 +80,8 @@ Dans les pics de correspondance de Constance de Salm, on voit que les
 femmes restent majoritaire en tant qu’autrices des lettres.
 </p>
 
-<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
-
-### La première ligne des lettres du corpus de Constance de Salm
-
-<p style="text-align:justify;">
-J’ai réalisé un nuage de mots et regardé les mots employés les plus
-fréquemment dans la première ligne des lettres du corpus.
-</p>
-
 <img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
-|           | Global occ. |  Global % |
-|:----------|------------:|----------:|
-| monsieur  |         668 | 5.3857938 |
-| lettre    |         407 | 3.2814642 |
-| madame    |         364 | 2.9347738 |
-| chère     |         246 | 1.9833911 |
-| reçu      |         220 | 1.7737644 |
-| sœur      |         167 | 1.3464484 |
-| bien      |         162 | 1.3061356 |
-| cher      |         137 | 1.1045715 |
-| depuis    |         116 | 0.9352576 |
-| écrire    |         106 | 0.8546319 |
-| hier      |          98 | 0.7901314 |
-| frère     |          97 | 0.7820689 |
-| si        |          97 | 0.7820689 |
-| jours     |          94 | 0.7578812 |
-| plus      |          90 | 0.7256309 |
-| avoir     |          87 | 0.7014432 |
-| dire      |          87 | 0.7014432 |
-| fait      |          86 | 0.6933806 |
-| bonne     |          84 | 0.6772555 |
-| veux      |          82 | 0.6611304 |
-| répondre  |          77 | 0.6208175 |
-| princesse |          75 | 0.6046924 |
-| amie      |          74 | 0.5966298 |
-| paris     |          70 | 0.5643796 |
-| temps     |          67 | 0.5401919 |
+## Réseaux
 
-### La première ligne des lettres de Constance de Salm
-
-<p style="text-align:justify;">
-J’ai extrait les premières des lettres de Constance de Salm pour
-visualiser si son nuage de mots est différent de celui du reste du
-corpus.
-</p>
+## Analyse lexicale

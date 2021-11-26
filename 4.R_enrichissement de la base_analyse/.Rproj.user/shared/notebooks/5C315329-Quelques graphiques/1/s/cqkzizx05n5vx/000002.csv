@@ -1,5 +1,0 @@
-"0","library(R.temis)"
-"0","corpus <- import_corpus(""CdS_main_genre.csv"", format=""csv"", textcolumn = 22,language=""fr"")"
-"0","dtmsmo <-build_dtm(corpus,remove_stopwords = T)"
-"0","dic <-dictionary(dtmsmo)"
-"0","cloud<-word_cloud(dtmsmo, color=""red"", n=60, min.freq=10)"
