@@ -108,7 +108,7 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 1. Importation vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
-2. Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... 
+2. Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... et télécharger les information gógraphique de geodata pour donner la possibilité des plusierus visualisations.
 
 3. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
 
