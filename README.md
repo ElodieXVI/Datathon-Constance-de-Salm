@@ -22,6 +22,8 @@ Le projet a néanmoins permis :
   - de proposer une analyse textuelle de la première ligne des lettres du corpus et notamment une analyse des sentiments. 
   - et enfin, de télécharger les coordonnées géographiques avec la bibliothèque geocode de Python qui ont été sauvegardés dans une base de données.
 
+[Présentation des résultats](https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/1.Pr%C3%A9sentation_des_r%C3%A9sultats/R%C3%A9sultats.md)
+
 Vous pouvez retrouver Constance de Salm sur Twitter : https://twitter.com/ConstanceSalm
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,5 +45,7 @@ The project has nevertheless allowed :
   - to propose an analysis of the networks of the correspondence
   - propose a textual analysis of the first line of the letters of the corpus
   - and finally, to create a map from the partially recovered geodata.
+
+[Presentation of results](https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/1.Pr%C3%A9sentation_des_r%C3%A9sultats/R%C3%A9sultats.md)
 
 You can find Constance de Salm on Twitter: https://twitter.com/ConstanceSalm 
