@@ -132,7 +132,7 @@ lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothè
 
 Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
 
-Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.
+Pour permettre une référence, on a aussi fait une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.
 
 ![Résultats](resultats_figure_24heures.png)
 
