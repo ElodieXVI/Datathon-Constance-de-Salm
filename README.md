@@ -1,7 +1,7 @@
 # Datathon-Constance-de-Salm
-<p align="center">
-![image](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
-  </p>
+
+![image, align=center](https://user-images.githubusercontent.com/72803949/143547659-3e44dd46-b8f1-4b54-b8d5-c25c20e6eab7.png)
+
 ## La correspondance de Constance de Salm (1767-1845)
 
 Au cours du datathon organisé par l’IHA et le DFK Paris portant sur l’utilisation créative des données de recherche des deux institutions, nous avons choisi de travailler sur la correspondance de Constance de Salm dont un projet du DHI dresse l’inventaire et propose la numérisation de deux collections liées à la correspondance de Constance de Salm. Il s’agit d’une part du fonds « Salm » de la « Société des Amis du Vieux Toulon et de sa Région » et d’autre part de la collection « Constance de Salm » des archives du « Schloss Dyck » (membre de la « Vereinigte Adelsarchive im Rheinland e.V. »). Constance de Salm n’était pas célèbre que pour son salon parisien, elle entretenait aussi une correspondance régulière avec des intellectuels, des poètes, des artistes, des journalistes et des membres de la noblesse de son époque.
