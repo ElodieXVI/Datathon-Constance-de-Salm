@@ -115,10 +115,10 @@ Facette : ligne de temps, auteur
 ## Analyse lexicale
 <p> On a décidé d'utiliser toute les premières phrases des lettres pour l'analyse. Après qu'on a fait la prépraration lexicale pour permettre une analyse plus élaborée, on a utilisé la bibliothèque TextBlob pour déterminer le sentiment de chaque phrase.</p>
 
-<img src="analyse_de_sentiment/documents/resultats_figure.png" style="display: block; margin: auto;"/>
+![Résultats](resultats_figure.png)
 
 <p>Les résultats montrent que le ton général dans le jeu de données est positif. Bien sûr, il faudrait le verifier.
 
 Pour permettre une référence, on a aussi faire une analyse de sentiment d'œuvre "Vingt quatre heures d'une femme sensible". Ici, le ton et plus neutre.</p>
 
-<img src="analyse_de_sentiment/documents/resultats_figure_24heures.png" style="display: block; margin: auto;"/>
+![Résultats](resultats_figure_24heures.png)
