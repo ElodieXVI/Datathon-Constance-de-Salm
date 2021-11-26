@@ -73,15 +73,6 @@ masculins, les autres mains ont en majorité des autrices.
 
 <img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
-### L’évolution dans le temps du genre des auteurs des lettres
-
-<p style="text-align:justify;">
-Dans les pics de correspondance de Constance de Salm, on voit que les
-femmes restent majoritaire en tant qu’autrices des lettres.
-</p>
-
-<img src="Quelques-graphiques_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
-
 ## Réseaux
 
 ### Sondage
