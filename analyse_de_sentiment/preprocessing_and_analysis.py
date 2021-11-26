@@ -24,7 +24,7 @@ pos_list = ["NOUN", "ADJ", "ADV"]
 
 # Ajouter et analyser les documents / ajouter les résultats au DataFrame
 results_complet = {}
-cds_dataframe = pd.read_csv('./Donnees_Lettres/20211116_Constance_de_Salm_Korrespondenz_Inventar_Briefe.csv',
+cds_dataframe = pd.read_csv('../Donnees_Lettres/20211116_Constance_de_Salm_Korrespondenz_Inventar_Briefe.csv',
                             usecols=['FuD-Key', 'Anfang des Briefes'], sep=';')
 for i, value in cds_dataframe.iterrows():
     sentence = value['Anfang des Briefes']
@@ -56,5 +56,5 @@ for i, value in cds_dataframe.iterrows():
 
     df = pd.DataFrame.from_dict(results_complet, orient='index', columns=['résultat'])
     df.index.name = 'fichier'
-    df.to_csv('./test/result_sentiment_analyse.csv')
+    df.to_csv('./documents/result_sentiment_analyse.csv')
 

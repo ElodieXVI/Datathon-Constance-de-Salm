@@ -13,7 +13,7 @@ def visualise(csv_file):
 
 if __name__ == '__main__':
 
-    lists = sorted(visualise(csv_file='./test/result_sentiment_analyse.csv').items())
+    lists = sorted(visualise(csv_file='./documents/result_sentiment_analyse.csv').items())
     x, y = zip(*lists)
     plt.bar(x, y, color=['blue', 'red', 'green'])
     plt.savefig('./test/resultats_figure.png')
