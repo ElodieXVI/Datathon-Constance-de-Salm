@@ -1,8 +1,0 @@
-library(readr)
-library(tidyverse)
-library(questionr)
-
-#Les thématiques des lettres : ####
-
-
-
