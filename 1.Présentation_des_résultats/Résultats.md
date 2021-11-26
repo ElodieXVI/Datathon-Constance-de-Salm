@@ -1,6 +1,6 @@
 Correspondance de Constance de Salm
 ================
-Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber avec l'aide de Hippolyte Souvay
+Par Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire avec l'aide de Hippolyte Souvay
 
 26 novembre 2021
 
