@@ -106,17 +106,17 @@ On voit (dans la colonne points clés "inhaltliche Schlagwörter") pour ce corpu
 
 ### Exemple d'application des données enrichies et divisées
 
+Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... et télécharger les information geographique de geodata pour donner la possibilité des plusieurs visualisations.
+
 1. Importation vers [Palladio](http://hdlab.stanford.edu/palladio/)
 
-2. Mise à jours des donnée: On a changé les noms des colones pour simplifier l'accees par Pyhton/R... et télécharger les information gógraphique de geodata pour donner la possibilité des plusierus visualisations.
-
-3. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
+2. Graph du réseau : Source: auteur "Verfasser" et Target: destinataire "Empfänger"
 
     Filtré par timeline, dimension "Datierung"
 
     Et avec des facettes :  Main, sexe, mot-clé "Schlagwort", lieu "Ausstellungsort"
 
-4. Carte
+3. Carte
 
 Dimension: lieux de création "Ausstellungsort"
 
