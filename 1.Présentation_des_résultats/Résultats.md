@@ -16,6 +16,8 @@ Correspondance de Constance de Salm
     -   [L’évolution dans le temps du genre des auteurs des
         lettres](#lévolution-dans-le-temps-du-genre-des-auteurs-des-lettres)
 -   [Réseaux](#réseaux)
+    -   [Sondage](#Sondage)
+    -   [Exemple d'application des données enrichies et divisées](#Exemple_dapplication_des_données_enrichies_et_divisées)      
 -   [Analyse lexicale](#analyse-lexicale)
 
 ## Quelques leçons de la tentative d’OCRisation de la correspondance
