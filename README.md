@@ -24,6 +24,8 @@ Le projet a néanmoins permis :
 
 [N’hésitez pas à aller retrouver Constance de Salm sur Twitter.](https://twitter.com/ConstanceSalm)
 
+[Un blog avec le développement du projet (allemand)](https://nullmuseum.hypotheses.org/92)
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Datathon: Project on the correspondence of Constance of Salm (1767-1845)
 By Sarah Rebecca Ondraszek, Eike Martin Löhden, Lukas Fuchsgruber, Élodie Lemaire with the help of Hippolyte Souvay
@@ -50,3 +52,5 @@ Nevertheless, the project allowed us to :
 [Presentation of the results](https://github.com/ElodieXVI/Datathon-Constance-de-Salm/blob/main/1.Pr%C3%A9sentation_des_r%C3%A9sultats/R%C3%A9sultats.md)
 
 [Feel free to follow Constance de Salm on Twitter](https://twitter.com/ConstanceSalm)
+
+[A blog with the development of the project (german)](https://nullmuseum.hypotheses.org/92)
